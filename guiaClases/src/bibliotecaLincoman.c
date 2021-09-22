@@ -6,6 +6,204 @@
  */
 #include "bibliotecaLincoman.h"
 
+eProductos altaProducto(int newId)
+{
+	eProductos productoIngresado;
+
+	productoIngresado.idProducto = newId;
+	printf("Ingrese descripcion: ");
+	fflush(stdin);
+	scanf("%[^\n]", productoIngresado.descripcion);
+	productoIngresado.nacionalidad=cargarUnEntero("Ingrese una naciondalidad: ", "Error, ingrese una naciondalidad valida(entre 1 y 3): ", 1, 3, 4);
+	productoIngresado.tipo =cargarUnEntero("Ingrese un tipo: ", "Error, ingrese un tipo valido(entre 1 y 4): ", 1, 4, 4);
+	productoIngresado.precio =cargarUnEntero("Ingrese el precio: ", "Error, ingrese un precio mayor a 0: ", 0, 2147483647, 4);
+	productoIngresado.isEmpty = 1;
+
+
+	return productoIngresado;
+}
+void inicializarEstructura(eProductos lista[], int tam)
+{
+	int i;
+		for(i=0;i<tam;i++)
+		{
+			lista[i].isEmpty = 0;
+		}
+}
+int indexLibre(eProductos lista[], int tam)
+{
+	int i;
+	int index;
+	index = -1;
+
+	if(lista != NULL)
+	{
+		for(i=0;i<tam;i++)
+		{
+			if(lista[i].isEmpty==0)
+			{
+				index = i;
+				break;
+			}
+		}
+	}
+	return index;
+}
+void mostrarProductos(eProductos lista[], int tam)
+{
+	int i;
+	if(lista != NULL)
+	{
+		printf("\nID	DESCRIPCION	 NACIONALIDAD  	 TIPO 	PRECIO\n");
+		for (i = 0; i < tam; ++i) {
+			if(lista[i].isEmpty==1)
+			{
+				mostrarUnProducto(lista[i]);
+			}
+
+		}
+	}
+}
+void mostrarUnProducto(eProductos lista)
+{
+	printf("%4d %15s    \t%4d  \t%4d\t%.2f\n",lista.idProducto, lista.descripcion,
+		    lista.nacionalidad, lista.tipo, lista.precio);
+}
+//devuelve 0 en caso de borrado
+int modificarProducto(eProductos lista[], int ultimoId, int tam)
+{
+	int idMod;
+	int indexMod;
+	int opcion;
+	int error;
+	error = 1;
+	if(lista != NULL)
+	{
+		mostrarProductos(lista, tam);
+		idMod = cargarUnEntero("Ingrese el id de producto a modificar: ", "Error, ingrese un id valido: ", 999, ultimoId, 4);
+		indexMod = buscarIndexId(lista, tam, idMod);
+		do{
+			   	printf("\n***************************\n");
+			   	printf("*    Menu Modificar       *\n");
+			   	printf("***************************\n");
+			   	printf("*  ¿Que desear modificar? *\n");
+			   	printf("* 1. Descripcion          *\n");
+			   	printf("* 2. Nacionalidad         *\n");
+			   	printf("* 3. Tipo                 *\n");
+			   	printf("* 4. Precio               *\n");
+			   	printf("* 0. SALIR                *\n");
+			   	printf("***************************\n");
+			    opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 4, 4);
+
+				switch(opcion)
+				{
+					case 1:
+						mostrarUnProducto(lista[indexMod]);
+						printf("\n");
+						printf("Ingrese nueva descripcion: ");
+						fflush(stdin);
+						scanf("%[^\n]", lista[indexMod].descripcion);
+						limpiar();
+						break;
+					case 2:
+						mostrarUnProducto(lista[indexMod]);
+						printf("\n");
+						lista[indexMod].nacionalidad=cargarUnEntero("Ingrese una nueva naciondalidad: ", "Error, ingrese una naciondalidad valida(entre 1 y 3): ", 1, 3, 4);
+						limpiar();
+						break;
+					case 3:
+						mostrarUnProducto(lista[indexMod]);
+						printf("\n");
+						lista[indexMod].tipo =cargarUnEntero("Ingrese un nuevo tipo: ", "Error, ingrese un tipo valido(entre 1 y 4): ", 1, 4, 4);
+						limpiar();
+						break;
+					case 4:
+						mostrarUnProducto(lista[indexMod]);
+						printf("\n");
+						lista[indexMod].precio =cargarUnEntero("Ingrese el nuevo precio: ", "Error, ingrese un precio mayor a 0: ", 0, 2147483647, 4);
+						limpiar();
+						break;
+				}
+				error = 0;
+		}while(opcion != 0);
+	}
+
+	return error;
+}
+int buscarIndexId(eProductos lista[], int tam, int id)
+{
+	int i;
+	int index;
+	index =-1;
+	if(lista != NULL)
+	{
+		for(i=0;i<tam;i++)
+		{
+			if(lista[i].idProducto==id)
+			{
+				index = i;
+			}
+		}
+	}
+	return index;
+}
+int borrarProducto(eProductos lista[], int tam, int ultimoId)
+{
+	int idBorrar;
+	int error;
+	error = 1;
+	if(lista != NULL)
+	{
+		mostrarProductos(lista, tam);
+		idBorrar = cargarUnEntero("Ingrese el id a borrar: ", "Error, ingrese un id valido: ", 999, ultimoId, 4);
+		error = bajaProducto(lista, idBorrar, tam);
+		if(error == 1){
+			printf("\n\nError, el id no es valido....\n");
+		}
+	}
+
+	return error;
+}
+void cargarProducto(eProductos lista[], int newId, int tam)
+{
+	int index;
+	if(lista != NULL)
+	{
+		index = indexLibre(lista, tam);
+		if(index>=0)
+		{
+			lista[index] = altaProducto(newId);
+		}else{
+			printf("\nNo hay lugar....\n");
+		}
+	}
+}
+//devuelve 0 en caso de borrado
+int bajaProducto(eProductos lista[], int id, int tam)
+{
+	int i;
+	int error;
+	error = 1;
+	if(lista != NULL)
+	{
+		for(i=0;i<tam;i++)
+		{
+			if(lista[i].idProducto==id)
+			{
+				lista[i].idProducto=0;
+				strcpy(lista[i].descripcion, " ");
+				lista[i].nacionalidad= 0;
+				lista[i].tipo = 0;
+				lista[i].precio = 0.00;
+				lista[i].isEmpty = 0;
+				error = 0;
+				break;
+			}
+		}
+	}
+
+	return error;
+}
 
 void limpiar()
 {
@@ -44,6 +242,7 @@ int numMayorTres(int numUno, int numDos, int numTres)
 
 	return numMayor;
 }
+
 void numMedioTres(int numUno, int numDos, int numTres)
 {
 	int numMedio;
@@ -99,6 +298,73 @@ void sort(int* numUno, int* numDos)
 	aux = *numUno;
 	*numUno = *numDos;
 	*numDos = aux;
+}
+
+void eSort(eProductos *prodUno, eProductos *prodDos)
+{
+	eProductos prodAux;
+
+	prodAux = *prodUno;
+	*prodUno = *prodDos;
+	*prodDos = prodAux;
+}
+//mayor menor = 1 // menor mayor = 0
+void sortEstructuraPrecio(eProductos lista[], int tam, int criterio)
+{
+	int i;
+	int j;
+	if(lista != NULL)
+	{
+		if(criterio == 1)
+		{
+			for (i = 0; i < tam-1; ++i){
+				for (j = i+1; j < tam; ++j){
+					if(lista[i].precio<lista[j].precio){
+						eSort(&lista[i], &lista[j]);
+					}
+				}
+			}
+		}else{
+			if(criterio == 0){
+				for (i = 0; i < tam-1; ++i) {
+					for (j = i+1; j < tam; ++j) {
+						if(lista[i].precio>lista[j].precio){
+							eSort(&lista[i], &lista[j]);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+//mayor menor = 1 // menor mayor = 0
+void sortEstructuraDesc(eProductos lista[], int tam, int criterio)
+{
+	int i;
+	int j;
+	if(lista != NULL)
+	{
+		if(criterio == 1)
+		{
+			for (i = 0; i < tam-1; ++i){
+				for (j = i+1; j < tam; ++j){
+					if(strcmp(lista[i].descripcion, lista[j].descripcion)>0){
+						eSort(&lista[i], &lista[j]);
+					}
+				}
+			}
+		}else{
+			if(criterio == 0){
+				for (i = 0; i < tam-1; ++i) {
+					for (j = i+1; j < tam; ++j) {
+						if(strcmp(lista[i].descripcion, lista[j].descripcion)<0){
+							eSort(&lista[i], &lista[j]);
+						}
+					}
+				}
+			}
+		}
+	}
 }
 //mayor menor = 1 // menor mayor = 0
 void sortArrayCriterio(int lista[], int tam, int criterio)
@@ -422,6 +688,8 @@ void cargarArray(int array[], int tam, int max, int min)
 		array[i] = cargarUnEntero("Ingrese un numero: ", "Error, ingrese un numero: ", min, max, 4);
 	}
 }
+
+
 
 void mostrarVector(int array[], int tam)
 {

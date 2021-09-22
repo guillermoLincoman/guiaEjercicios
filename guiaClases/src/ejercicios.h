@@ -4,10 +4,13 @@
  *  Created on: 12 sep. 2021
  *      Author: Compumar
  */
-#include "bibliotecaLincoman.h"
+
 
 #ifndef EJERCICIOS_H_
 #define EJERCICIOS_H_
+#include "bibliotecaLincoman.h"
+
+
 //clase1
 void ejercicioUnoUno();
 void ejercicioUnoDos();
@@ -35,4 +38,9 @@ void anexoCincoUno();
 void ejercicioSeisUno();
 void ejercicioSeisDos();
 void ejercicioSeisTres();
+//Clase 7
+void ejercicioSieteUno();
+//void ejercicioSieteDos();
+
+
 #endif /* EJERCICIOS_H_ */

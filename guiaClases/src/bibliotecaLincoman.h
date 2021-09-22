@@ -16,8 +16,30 @@
 #ifndef BIBLIOTECALINCOMAN_H_
 #define BIBLIOTECALINCOMAN_H_
 
+typedef struct
+{
+	int idProducto;
+	char descripcion[240];
+	int nacionalidad;
+	int tipo;
+	float precio;
+	int isEmpty;
+}eProductos;
+//funciones estructuras
+eProductos altaProducto(int newId);
+void inicializarEstructura(eProductos lista[], int tam);
+int indexLibre(eProductos lista[], int tam);
+int bajaProducto(eProductos lista[], int id, int tam);
+int modificarProducto(eProductos lista[], int ultimoId, int tam);
+int buscarIndexId(eProductos lista[], int tam, int id);
+int borrarProducto(eProductos lista[], int tam, int ultimoId);
+void cargarProducto(eProductos lista[], int newId, int tam);
+void mostrarProductos(eProductos lista[], int tam);
+void sortEstructuraPrecio(eProductos lista[], int tam, int criterio);
+void sortEstructuraDesc(eProductos lista[], int tam, int criterio);
+void mostrarUnProducto(eProductos lista);
+void eSort(eProductos *prodUno, eProductos *prodDos);
 void limpiar();
-
 int suma(int numUno, int numDos);
 float promedio(int num, int tam);
 float promedioVector(int lista[], int tam);
@@ -35,6 +57,7 @@ float cargarUnFloat(char* mensaje, char* mensajeError,int rangoMin, int rangoMax
 int getUsuario(char *guardar, char *mensaje, char *mensajeError, int rangoMin, int rangoMax, int intentos);
 int getString(char *guardar, char *mensaje, char *mensajeError, int rangoMin, int rangoMax, int intentos);
 void cargarArray(int array[], int tam, int max, int min);
+//void cargarArrayEstructura(eProductos producto, int tam);
 void cargarArrayLetras(char array[], int tam, int max, int min);
 void mostrarVector(int array[], int tam);
 int sumarVector(int array[], int tam);

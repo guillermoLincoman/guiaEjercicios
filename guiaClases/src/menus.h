@@ -16,4 +16,5 @@ void clase4();
 void clase5();
 void anexoClase5();
 void clase6();
+void clase7();
 #endif /* MENUS_H_ */

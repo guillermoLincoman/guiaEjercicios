@@ -409,16 +409,69 @@ void ejercicioSeisTres()
 {
 	int tam;
 	tam = 1;
-	char nombre[tam][30];
-	char apellido[tam][30];
-	char nombreCompleto[tam][60];
+	char nombre[tam][40];
+	char apellido[tam][60];
 	/*for (i = 0; i < tam; ++i) {
 		getUsuario(nombre[i], "Ingrese su nombre: ", "Error, ingrese un nombre valido: ", 1, 40, 4);
 		getUsuario(apellido[i], "Ingrese su apellido: ", "Error, ingrese un apellido valido: ", 1, 40, 4);
 	}*/
-	getUsuario(nombre[0], "Ingrese su nombre: ", "Error, ingrese un nombre valido: ", 1, 60, 4);
+	getUsuario(nombre[0], "Ingrese su nombre: ", "Error, ingrese un nombre valido: ", 1, 40, 4);
 	getUsuario(apellido[0], "Ingrese su apellido: ", "Error, ingrese un apellido valido: ", 1, 60, 4);
-	strcat(nombreCompleto[0], " ,");
-	strcat(nombreCompleto[0], nombre[0]);
-	printf("%s", nombreCompleto[0]);
+	strcat(apellido[0], " ,");
+	strcat(apellido[0], nombre[0]);
+	printf("%s", apellido[0]);
+}
+
+void ejercicioSieteUno()
+{
+	eProductos producto[3];
+	int opcion;
+	int proxId;
+	proxId = 1000;
+	inicializarEstructura(producto, 3);
+	 do{
+		    	printf("\n******************************\n");
+		    	printf("*    Menu Opciones           *\n");
+		    	printf("******************************\n");
+		    	printf("*                            *\n");
+		    	printf("* 1. ALTA                    *\n");
+		    	printf("* 2. BAJA                    *\n");
+		    	printf("* 3. MODIFICACION            *\n");
+		    	printf("* 4. LISTADO Productos       *\n");
+		    	printf("* 5. LISTADO por precio      *\n");
+		    	printf("  6. LISTADO por descripcion *\n");
+		    	printf("* 0. SALIR                   *\n");
+		    	printf("******************************\n");
+		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 6, 4);
+				switch(opcion)
+				{
+					case 1:
+						cargarProducto(producto, proxId, 3);
+						proxId++;
+						limpiar();
+						break;
+					case 2:
+						borrarProducto(producto, 3, proxId);
+						limpiar();
+						break;
+					case 3:
+						modificarProducto(producto, proxId, 3);
+						limpiar();
+						break;
+					case 4:
+						mostrarProductos(producto, 3);
+						limpiar();
+						break;
+					case 5:
+						sortEstructuraPrecio(producto, 3, 0);
+						mostrarProductos(producto, 3);
+						limpiar();
+						break;
+					case 6:
+						sortEstructuraDesc(producto, 3, 0);
+						mostrarProductos(producto, 3);
+						limpiar();
+						break;
+				}
+		    }while(opcion != 0);
 }

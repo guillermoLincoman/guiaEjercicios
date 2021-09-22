@@ -19,6 +19,7 @@ void menuClases()
     printf("* 4. CLASE 4                  *\n");
     printf("* 5. CLASE 5                  *\n");
     printf("* 6. CLASE 6                  *\n");
+    printf("* 7. CLASE 7                  *\n");
     printf("* 0. SALIR                    *\n");
     printf("*******************************\n");
 }
@@ -261,3 +262,31 @@ void clase6()
     }while(ejercicio != 0);
 }
 
+void clase7()
+{
+	int ejercicio;
+
+    do{
+    	printf("\n*******************************\n");
+    	printf("* GUIA DE EJERCICIOS - CLASE 7*\n");
+    	printf("*******************************\n");
+    	printf("* Seleccione Ejercicio        *\n");
+    	printf("*                             *\n");
+    	printf("* 1. Ejercicio 7-1:           *\n");
+    	printf("* 2. Ejercicio 7-2:           *\n");
+    	printf("* 0. SALIR                    *\n");
+    	printf("*******************************\n");
+    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 2, 4);
+		switch(ejercicio)
+		{
+			case 1:
+				ejercicioSieteUno();
+				limpiar();
+				break;
+			case 2:
+				//ejercicioSieteDos();
+				limpiar();
+				break;
+		}
+    }while(ejercicio != 0);
+}
