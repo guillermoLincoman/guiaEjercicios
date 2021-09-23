@@ -242,7 +242,7 @@ void ejercicioCuatroUno()
 	int numero;
 	fac=0;
 	numero = cargarUnEntero("Ingrese un numero: ", "Error, ingrese un caracter numerico: ", -2147483647, 2147483647, 4);
-	fac=factorial(fac,numero);
+	fac=factorial(numero);
 	printf("%d",fac);
 }
 
