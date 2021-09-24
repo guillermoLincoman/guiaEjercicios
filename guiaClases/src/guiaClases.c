@@ -46,6 +46,14 @@ int main()
             	clase7();
             	limpiar();
             	break;
+            case 8:
+            	clase8();
+            	limpiar();
+            	break;
+            case 9:
+            	clase9();
+            	limpiar();
+            	break;
         }
     }while(clase != 0);
     return 0;

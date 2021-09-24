@@ -5,6 +5,32 @@
  *      Author: Compumar
  */
 #include "bibliotecaLincoman.h"
+
+
+void menuTipo()
+{
+	printf("\n******************\n");
+	printf("* MENU TIPOS     *\n");
+	printf("******************\n");
+	printf("*                *\n");
+    printf("* 1. IPHONE      *\n");
+    printf("* 2. MAC         *\n");
+    printf("* 3. IPAD        *\n");
+    printf("* 4. ACCESORIOS  *\n");
+    printf("******************\n");
+}
+void menuNacionalidad()
+{
+	printf("\n*********************\n");
+	printf("* MENU NACIONALIDAD *\n");
+	printf("*********************\n");
+	printf("*                   *\n");
+    printf("* 1. EEUU           *\n");
+    printf("* 2. CHINA          *\n");
+    printf("* 3. OTRO           *\n");
+    printf("*********************\n");
+}
+
 void limpiar()
 {
 	printf("\n");
@@ -373,7 +399,9 @@ eProductos altaProducto(int newId)
 	printf("Ingrese descripcion: ");
 	fflush(stdin);
 	scanf("%[^\n]", productoIngresado.descripcion);
+	menuNacionalidad();
 	productoIngresado.nacionalidad=cargarUnEntero("Ingrese una naciondalidad: ", "Error, ingrese una naciondalidad valida(entre 1 y 3): ", 1, 3, 4);
+	menuTipo();
 	productoIngresado.tipo =cargarUnEntero("Ingrese un tipo: ", "Error, ingrese un tipo valido(entre 1 y 4): ", 1, 4, 4);
 	productoIngresado.precio =cargarUnEntero("Ingrese el precio: ", "Error, ingrese un precio mayor a 0: ", 0, 2147483647, 4);
 	productoIngresado.isEmpty = 1;
@@ -382,6 +410,20 @@ eProductos altaProducto(int newId)
 	return productoIngresado;
 }
 
+/** \brief Pide datos y carga una estructura
+ *
+ * \return retorna una estructura con datos cargados
+ *
+ */
+eJugador cargarJugador()
+{
+	eJugador nuevoJugador;
+	getUsuario(nuevoJugador.nombre, "Ingrese nombre:", "Error, ingrese un nombre valido:", 1, 40, 4);
+	nuevoJugador.golesMetidos=cargarUnEntero("Ingrese la cantidad de goles metidos: ", "Error, ingrese una cantidad valida(entre 0 y 500): ", 0, 500, 4);
+	nuevoJugador.partidosJugados =cargarUnEntero("Ingrese la cantidad de partidos jugados: ", "Error, Ingrese la cantidad de partidos jugados: ", 1, 400, 4);
+	nuevoJugador.promedioGoles = (float)nuevoJugador.golesMetidos/nuevoJugador.partidosJugados;
+	return nuevoJugador;
+}
 /** \brief Libera el lugar e inicializa todo en 0
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -466,6 +508,24 @@ void cargarProducto(eProductos lista[], int newId, int tam)
 	}
 }
 
+/** \brief Carga un producto en un indice vacio de la estructura
+ *
+ * \param eProductos lista[] recibe la estructura a cargar
+ * \param int tam: el tamaño de lugares disponibles
+ *
+ */
+void altaJugador(eJugador lista[], int tam)
+{
+	int i;
+	if(lista != NULL)
+	{
+		for (i = 0; i < tam; ++i) {
+
+			lista[i] = cargarJugador();
+		}
+	}
+}
+
 /** \brief Modifica un producto de la estructura segun id
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -512,6 +572,7 @@ int modificarProducto(eProductos lista[], int ultimoId, int tam)
 						limpiar();
 						break;
 					case 2:
+						menuNacionalidad();
 						mostrarUnProducto(lista[indexMod]);
 						printf("\n");
 						lista[indexMod].nacionalidad=cargarUnEntero("Ingrese una nueva naciondalidad: ", "Error, ingrese una naciondalidad valida(entre 1 y 3): ", 1, 3, 4);
@@ -520,6 +581,7 @@ int modificarProducto(eProductos lista[], int ultimoId, int tam)
 						break;
 					case 3:
 						mostrarUnProducto(lista[indexMod]);
+						menuTipo();
 						printf("\n");
 						lista[indexMod].tipo =cargarUnEntero("Ingrese un nuevo tipo: ", "Error, ingrese un tipo valido(entre 1 y 4): ", 1, 4, 4);
 						error = 0;
@@ -560,6 +622,7 @@ void mostrarProductos(eProductos lista[], int tam)
 		}
 	}
 }
+
 /** \brief Muestra una de las estructuras cargadas
  *
  * \param eProductos lista recibe la estructura en una posicion a mostrar
@@ -570,6 +633,7 @@ void mostrarUnProducto(eProductos lista)
 	printf("%4d %15s    \t%4d  \t%4d\t%.2f\n",lista.idProducto, lista.descripcion,
 		    lista.nacionalidad, lista.tipo, lista.precio);
 }
+
 
 /** \brief Intercambia el valor de dos datos de una estructura
  *
@@ -619,6 +683,124 @@ void sortEstructuraPrecio(eProductos lista[], int tam, int criterio)
 		}
 	}
 }
+/** \brief Muestra El o los productos mas caros
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int criterio: criterio de ordenamiento mayor menor = 1 // menor mayor = 0
+ * \param int tam: el tamaño de lugares disponibles
+ */
+void prodMasCaros(eProductos lista[], int tam)
+{
+
+	int prodMayor;
+	int idMayor;
+	int auXiDMayor[tam];
+	int auxPrecio[tam];
+	int contAux;
+	int index;
+	contAux=-1;
+	int i;
+	if(lista != NULL)
+	{
+		for (i = 0; i < tam; ++i){
+			//si lista es mayor a prodMayor o i es igual igual a 0
+			if(lista[i].precio>=prodMayor || i==0)
+			{
+					if(lista[i].precio == prodMayor)
+					{
+						contAux++;
+						auxPrecio[contAux]=lista[i].precio;
+						auXiDMayor[contAux]=lista[i].idProducto;
+					}else{
+						prodMayor = lista[i].precio;
+						idMayor = lista[i].idProducto;
+					}
+			}
+		}
+		if(auxPrecio[contAux] == prodMayor)
+		{
+			printf("\nProductos Mas Caros: \n");
+			index = buscarIndexId(lista, tam, idMayor);
+			mostrarUnProducto(lista[index]);
+			for (i = 0; i <= contAux; ++i) {
+				index = buscarIndexId(lista, tam, auXiDMayor[i]);
+				mostrarUnProducto(lista[index]);
+			}
+		}else{
+			index = buscarIndexId(lista, tam, idMayor);
+			mostrarUnProducto(lista[index]);
+		}
+	}
+}
+
+/** \brief Muestra el promedio de los productos segun el tipo
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int criterio: segun el criterio se imprime el tipo
+ * \param int tam: el tamaño de lugares disponibles
+ */
+void precioTipoProd(eProductos lista[], int tam, int criterio)
+{
+	eProductos auxLista[tam];
+	int i;
+	int j;
+	float prom;
+	char tipo[14];
+	j=0;
+	if(lista != NULL)
+	{
+		for (i = 0; i < tam; ++i) {
+			if(lista[i].tipo == criterio)
+			{
+				auxLista[j]=lista[i];
+				j++;
+			}
+		}
+		prom = promedioProductos(auxLista, j);
+		switch(criterio)
+		{
+			case 1:
+				strcpy(tipo, "IPHONE");
+				break;
+			case 2:
+				strcpy(tipo, "MAC");
+				break;
+			case 3:
+				strcpy(tipo, "IPAD");
+				break;
+			case 4:
+				strcpy(tipo, "ACCESORIOS");
+				break;
+		}
+		printf("El promedio de %s es: $%.2f", tipo, prom);
+	}
+}
+
+/** \brief Saca el promedio de los numeros cargados en un vector
+ *
+ * \param int lista[] recibe el array a analizar
+ * \param int tam: el tamaño del array
+ *
+ * \return retorna el promedio de los numeros del array.
+ *
+ */
+float promedioProductos(eProductos lista[], int tam)
+{
+	float prom;
+	int acum;
+	acum = 0;
+	int i;
+	for (i = 0; i < tam; ++i) {
+		if(lista[i].isEmpty==1){
+			acum = acum + lista[i].precio;
+		}
+	}
+	prom = promedio(acum, tam);
+
+	return prom;
+}
+
+
 /** \brief Ordena una estructura segun la descripcion
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -1346,5 +1528,32 @@ void Sumar4(void)
 	printf("El resultado de %d + %d es: %d\n", numUno, numDos, suma);
 }
 
+/** \brief Muestra una de las estructuras cargadas
+ *
+ * \param eProductos lista recibe la estructura en una posicion a mostrar
+ *
+ */
+void mostrarUnJugador(eJugador lista)
+{
+	printf("%10s\t%4d\t%4d\t%.2f\n",lista.nombre, lista.golesMetidos,
+		    lista.partidosJugados, lista.promedioGoles);
+}
 
+/** \brief Muestra los campos de las estructuras cargadas
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int tam: el tamaño de lugares disponibles
+ *
+ */
+void mostrarJugadores(eJugador lista[], int tam)
+{
+	int i;
+	if(lista != NULL)
+	{
+		printf("\nNOMBRE	GOLES	 PARTIDOS  	 PROMEDIOGOLES\n");
+		for (i = 0; i < tam; ++i) {
+			mostrarUnJugador(lista[i]);
+		}
+	}
+}
 

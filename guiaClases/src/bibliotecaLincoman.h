@@ -26,6 +26,15 @@ typedef struct
 	int isEmpty;
 }eProductos;
 
+typedef struct
+{
+	char nombre[40];
+	int golesMetidos;
+	int partidosJugados;
+	float promedioGoles;
+}eJugador;
+void menuTipo();
+void menuNacionalidad();
 //Funciones Extras
 void limpiar();
 int validarLetra(char num[]);
@@ -46,6 +55,7 @@ eProductos altaProducto(int newId);
 int bajaProducto(eProductos lista[], int id, int tam);
 int borrarProducto(eProductos lista[], int tam, int ultimoId);
 void cargarProducto(eProductos lista[], int newId, int tam);
+void altaJugador(eJugador lista[], int tam);
 
 //Manipulacion de datos Estructuras
 int modificarProducto(eProductos lista[], int ultimoId, int tam);
@@ -54,6 +64,9 @@ void mostrarUnProducto(eProductos lista);
 void eSort(eProductos *prodUno, eProductos *prodDos);
 void sortEstructuraPrecio(eProductos lista[], int tam, int criterio);
 void sortEstructuraDesc(eProductos lista[], int tam, int criterio);
+void prodMasCaros(eProductos lista[], int tam);
+void precioTipoProd(eProductos lista[], int tam, int criterio);
+float promedioProductos(eProductos lista[], int tam);
 /************************************************************************/
 
 //FUNCIONES ARRAYS
@@ -111,4 +124,7 @@ int Sumar1(int, int);
 int Sumar2(void);
 void  Sumar3(int, int);
 void Sumar4(void);
+void mostrarJugadores(eJugador lista[], int tam);
+void mostrarUnJugador(eJugador lista);
+eJugador cargarJugador();
 #endif /* BIBLIOTECALINCOMAN_H_ */

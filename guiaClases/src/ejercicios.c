@@ -475,3 +475,193 @@ void ejercicioSieteUno()
 				}
 		    }while(opcion != 0);
 }
+void ejercicioOchoUno()
+{
+	eJugador jugador[3];
+	int opcion;
+	do{
+	    	printf("\n******************************\n");
+	    	printf("*    Menu Opciones           *\n");
+		   	printf("******************************\n");
+		   	printf("*                            *\n");
+		   	printf("* 1. ALTA JUGADOR            *\n");
+	    	printf("* 2. MOSTRAR JUGADORES       *\n");
+	    	printf("* 0. SALIR                   *\n");
+	    	printf("******************************\n");
+	    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 3, 4);
+			switch(opcion)
+			{
+				case 1:
+					altaJugador(jugador, 3);
+					limpiar();
+					break;
+				case 2:
+					mostrarJugadores(jugador, 3);
+					limpiar();
+					break;
+			}
+		    }while(opcion != 0);
+}
+
+void ejercicioOchoDos()
+{
+	eProductos producto[3];
+	int opcion;
+	int proxId;
+	proxId = 1000;
+	inicializarEstructura(producto, 3);
+	 do{
+		    	printf("\n******************************\n");
+		    	printf("*    Menu Opciones           *\n");
+		    	printf("******************************\n");
+		    	printf("*                            *\n");
+		    	printf("* 1. ALTA                    *\n");
+		    	printf("* 2. BAJA                    *\n");
+		    	printf("* 3. MODIFICACION            *\n");
+		    	printf("* 4. LISTADO Productos       *\n");
+		    	printf("* 5. LISTADO por precio      *\n");
+		    	printf("  6. LISTADO por descripcion *\n");
+		    	printf("* 0. SALIR                   *\n");
+		    	printf("******************************\n");
+		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 6, 4);
+				switch(opcion)
+				{
+					case 1:
+						cargarProducto(producto, proxId, 3);
+						proxId++;
+						limpiar();
+						break;
+					case 2:
+						borrarProducto(producto, 3, proxId);
+						limpiar();
+						break;
+					case 3:
+						modificarProducto(producto, proxId, 3);
+						limpiar();
+						break;
+					case 4:
+						mostrarProductos(producto, 3);
+						limpiar();
+						break;
+					case 5:
+						sortEstructuraPrecio(producto, 3, 0);
+						mostrarProductos(producto, 3);
+						limpiar();
+						break;
+					case 6:
+						sortEstructuraDesc(producto, 3, 0);
+						mostrarProductos(producto, 3);
+						limpiar();
+						break;
+				}
+		    }while(opcion != 0);
+}
+
+void ejercicioNueveUno()
+{
+	eProductos producto[3]={{1000, "Guillermo",2,1,420,1},
+							{1001,"Ruben",3,2,420,1},
+							{1002,"lincoman",1,2,204,1}};
+	int opcion;
+	int proxId;
+	int criterio;
+	int band;
+	//inciar en 0 cuando no hay datos harcodeados
+	band = 1;
+	proxId = 1000;
+	//inicializarEstructura(producto, 3);
+	 do{
+		    	printf("\n*************************************\n");
+		    	printf("*    Menu Opciones                  *\n");
+		    	printf("*************************************\n");
+		    	printf("*                                   *\n");
+		    	printf("* 1. ALTA                           *\n");
+		    	printf("* 2. BAJA                           *\n");
+		    	printf("* 3. MODIFICACION                   *\n");
+		    	printf("* 4. LISTADO Productos              *\n");
+		    	printf("* 5. LISTADO por precio             *\n");
+		    	printf("* 6. LISTADO por descripcion        *\n");
+		    	printf("* 7. El/los  productos más caros.   *\n");
+		    	printf("* 8. $ promedio x tipo de producto. *\n");
+		    	printf("* 0. SALIR                          *\n");
+		    	printf("*************************************\n");
+		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 8, 4);
+				switch(opcion)
+				{
+					case 1:
+						band = 1;
+						cargarProducto(producto, proxId, 3);
+						proxId++;
+						limpiar();
+						break;
+					case 2:
+						if(band == 1)
+						{
+							borrarProducto(producto, 3, proxId);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 3:
+						if(band == 1)
+						{
+							modificarProducto(producto, proxId, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 4:
+						if(band == 1)
+						{
+							mostrarProductos(producto, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 5:
+						if(band == 1)
+						{
+							sortEstructuraPrecio(producto, 3, 0);
+							mostrarProductos(producto, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 6:
+						if(band == 1)
+						{
+							sortEstructuraDesc(producto, 3, 0);
+							mostrarProductos(producto, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 7:
+						if(band == 1)
+						{
+							prodMasCaros(producto, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 8:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							precioTipoProd(producto, 3, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+				}
+		    }while(opcion != 0);
+
+}
