@@ -559,9 +559,9 @@ void ejercicioOchoDos()
 
 void ejercicioNueveUno()
 {
-	eProductos producto[3]={{1000, "Guillermo",2,1,420,1},
-							{1001,"Ruben",3,2,420,1},
-							{1002,"lincoman",1,2,204,1}};
+	eProductos producto[3]={{1000, "Guillermo",2,2,820,1},
+							{1001,"Ruben",3,2,830,1},
+							{1002,"lincoman",2,2,504,1}};
 	int opcion;
 	int proxId;
 	int criterio;
@@ -583,9 +583,13 @@ void ejercicioNueveUno()
 		    	printf("* 6. LISTADO por descripcion        *\n");
 		    	printf("* 7. El/los  productos más caros.   *\n");
 		    	printf("* 8. $ promedio x tipo de producto. *\n");
+		    	printf("* 9. De los Iphone el más barato    *\n");
+		    	printf("* 10.Los productos MADE IN CHINA.   *\n");
+		    	printf("* 11. Las MAC que salen + de $700   *\n");
+		    	printf("* 12. El/Los Accesorios más caros   *\n");
 		    	printf("* 0. SALIR                          *\n");
 		    	printf("*************************************\n");
-		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 8, 4);
+		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 12, 4);
 				switch(opcion)
 				{
 					case 1:
@@ -655,7 +659,49 @@ void ejercicioNueveUno()
 						{
 							menuTipo();
 							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
-							precioTipoProd(producto, 3, criterio);
+							promedioTipoProd(producto, 3, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 9:
+						if(band == 1)
+						{
+							masBaratoTipo(producto, 3, 1);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 10:
+						if(band == 1)
+						{
+							menuNacionalidad();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							mostrarProdNac(producto, 3, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 11:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							masMontoTipo(producto, 3, 700, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 12:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							tipoMasCaros(producto, 3, criterio);
 						}else{
 							printf("\n\nNo hay productos cargados....\n");
 						}
@@ -663,5 +709,304 @@ void ejercicioNueveUno()
 						break;
 				}
 		    }while(opcion != 0);
+
+}
+
+void ejercicioDiezUno()
+{
+	eCurso cursos[4]={
+	{100, "Java", 10},
+	{101, "VB", 20},
+	{102, "Phyton", 15},
+	{103, "Java Script", 30}
+	};
+	eAlumno listaAlumnos[6]={
+	{1, "Juan", 7, 101},
+	{2, "Ana", 4, 100},
+	{3, "Luis", 8, 101},
+	{4, "Maria", 5, 102},
+	{5, "Alberto", 6, 100},
+	{6, "Carlos", 2, 103}
+	};
+	int i;
+	int j;
+	printf("Ejercicio 10-1:\nDada la estructura eAlumno (legajo, nombre, nota1, nota2, promedio), de qué manera la podría\nrelacionar con la estructura eCurso (idCurso, descripcion, duracion), teniendo en cuenta que un\nalumno puede cursar solo un curso\n\n");
+	for (i = 0; i < 6; ++i) {
+		for (j = 0; j < 4; ++j) {
+			if(listaAlumnos[i].idCurso == cursos[j].idCurso){
+				printf("%d	%10s	%.2f	%s\n", listaAlumnos[i].legajo, listaAlumnos[i].nombre, listaAlumnos[i].promedio, cursos[j].descripcion);
+				break;
+			}
+		}
+	}
+
+	for (i = 0; i < 4; ++i)
+	{
+		printf("Alumnos en el curso de %s\n", cursos[i].descripcion);
+		for (j = 0; j < 6; ++j)
+		{
+			if(listaAlumnos[j].idCurso == cursos[i].idCurso)
+			{
+				printf("%d	%10s	%.2f\n", listaAlumnos[j].legajo, listaAlumnos[j].nombre, listaAlumnos[j].promedio);
+			}
+		}
+	}
+
+}
+
+
+void ejercicioDiezDos()
+{
+
+	printf("Ejercicio 10-2:\nCrear las siguientes estructuras en c, y definir la manera mas optima de relacionarlas.\n\n");
+/*
+ *
+//RELACION eProvedor - eProducto
+typedef struct
+{
+    int altura;
+    char calle[30];
+    int idLocalidad;
+    char descripcion[30];
+    int codigoPostal;
+
+}eDireccion;
+typedef struct
+{
+    int idProveedor; //PK
+    char razonSocial[30];
+    eDireccion direccion;
+}eProveedor;
+
+typedef struct
+{
+    int idProducto;
+    char descripcion[30];
+    float precio;
+    int idProveedor; //FK
+}eProducto;
+
+//RELACION eDueño - eMascota
+typedef struct
+{
+    int idDuenio; //PK
+    char nombre[30];
+    int edad;
+    char sexo;
+
+}eDuenio;
+
+typedef struct
+{
+    int idMascota;
+    char nombre[30];
+    eRaza raza;
+    char sexo;
+    int idDuenio; //FK
+}eMascota;
+
+//RELACION eAlumno - eLocalidad
+typedef struct
+{
+    int idAlumno;
+    char nombre[30];
+    int idLocalidad; //PK
+}eAlumno;
+
+typedef struct
+{
+    int altura;
+    char calle[30];
+    int idLocalidad//FK
+    char descripcion[30];
+    int codigoPostal;
+}eLocalidad;
+*/
+}
+
+void ejercicioDiezTres()
+{
+	eProductos producto[3]={{1000, "Guillermo",2,2,820,1},
+							{1001,"Ruben",3,2,830,1},
+							{1002,"lincoman",1,3,504,1}};
+	eNacionalidad nacionalidad[3]={{1, "EEUU"},
+								   {2,"CHINA"},
+								   {3,"OTRO"}};
+
+	eTipoProduco tipoProducto[4]={{1, "Iphone"},
+								  {2,"Ipad"},
+								  {3,"Mac"},
+								  {4,"Accesorios"}};
+	int opcion;
+	int proxId;
+	int criterio;
+	int band;
+	//inciar en 0 cuando no hay datos harcodeados
+	band = 1;
+	proxId = 1000;
+	//inicializarEstructura(producto, 3);
+	 do{
+		    	printf("\n*************************************\n");
+		    	printf("*    Menu Opciones                  *\n");
+		    	printf("*************************************\n");
+		    	printf("*                                   *\n");
+		    	printf("* 1. ALTA                           *\n");
+		    	printf("* 2. BAJA                           *\n");
+		    	printf("* 3. MODIFICACION                   *\n");
+		    	printf("* 4. LISTADO Productos              *\n");
+		    	printf("* 5. LISTADO por precio             *\n");
+		    	printf("* 6. LISTADO por descripcion        *\n");
+		    	printf("* 7. El/los  productos más caros.   *\n");
+		    	printf("* 8. $ promedio x tipo de producto. *\n");
+		    	printf("* 9. De los Iphone el más barato    *\n");
+		    	printf("* 10.Los productos MADE IN CHINA.   *\n");
+		    	printf("* 11. Las MAC que salen + de $700   *\n");
+		    	printf("* 12. El/Los Accesorios más caros   *\n");
+		    	printf("* 13. LISTA productos y descripción *\n");
+		    	printf("* 14. LISTA de productos por tipo   *\n");
+		    	printf("* 15. El/los tipos con mas productos*\n");
+		    	printf("* 0. SALIR                          *\n");
+		    	printf("*************************************\n");
+		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 14, 4);
+				switch(opcion)
+				{
+					case 1:
+						band = 1;
+						cargarProducto(producto, proxId, 3);
+						proxId++;
+						limpiar();
+						break;
+					case 2:
+						if(band == 1)
+						{
+							borrarProducto(producto, 3, proxId);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 3:
+						if(band == 1)
+						{
+							modificarProducto(producto, proxId, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 4:
+						if(band == 1)
+						{
+							mostrarProductos(producto, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 5:
+						if(band == 1)
+						{
+							sortEstructuraPrecio(producto, 3, 0);
+							mostrarProductos(producto, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 6:
+						if(band == 1)
+						{
+							sortEstructuraDesc(producto, 3, 0);
+							mostrarProductos(producto, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 7:
+						if(band == 1)
+						{
+							prodMasCaros(producto, 3);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 8:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							promedioTipoProd(producto, 3, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 9:
+						if(band == 1)
+						{
+							masBaratoTipo(producto, 3, 1);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 10:
+						if(band == 1)
+						{
+							menuNacionalidad();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							mostrarProdNac(producto, 3, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 11:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							masMontoTipo(producto, 3, 700, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 12:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							tipoMasCaros(producto, 3, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 13:
+						if(band == 1)
+						{
+							mostrarProductosCompleto(producto, nacionalidad, tipoProducto, 3, 3, 4);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 14:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							mostrarProductosCompletoSegunTipo(producto, nacionalidad, tipoProducto, 3, 3, 4, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+				}
+		    }while(opcion != 0);
+ 	//printf("* 13. LISTA productos y descripción *\n");
 
 }

@@ -14,8 +14,8 @@ void menuTipo()
 	printf("******************\n");
 	printf("*                *\n");
     printf("* 1. IPHONE      *\n");
-    printf("* 2. MAC         *\n");
-    printf("* 3. IPAD        *\n");
+    printf("* 2. IPAD         *\n");
+    printf("* 3. MAC        *\n");
     printf("* 4. ACCESORIOS  *\n");
     printf("******************\n");
 }
@@ -37,6 +37,7 @@ void limpiar()
     system("pause");
     system("cls");
 }
+
 /** \brief Valida que el dato sea una letra
  *
  * \param char num[]: recibe el dato a analizar
@@ -63,6 +64,8 @@ int validarLetra(char num[])
    }
    return 1;
 }
+
+
 /** \brief Intercambia el valor de dos datos
  *
  * \param int* numUno: recibe un puntero al primer numero
@@ -78,6 +81,7 @@ void sort(int* numUno, int* numDos)
 	*numUno = *numDos;
 	*numDos = aux;
 }
+
 
 /** \brief Pide, valida y devuelve un numero entero
  *
@@ -130,6 +134,8 @@ int cargarUnEntero(char* mensaje, char* mensajeError,int rangoMin, int rangoMax,
 	}
     return aux;
 }
+
+
 /** \brief Pide, valida y devuelve un numero Float
  *
  * \param char* mensaje: Recibe el mensaje para pedir Float
@@ -181,6 +187,8 @@ float cargarUnFloat(char* mensaje, char* mensajeError,int rangoMin, int rangoMax
 	}
     return aux;
 }
+
+
 /** \brief Pide, valida, devuelve y pone primer caracter Mayuscula a una cadena
  *
  * \param char* guardar: variable donde se va a guardar la cadena
@@ -262,6 +270,8 @@ int getUsuario(char *guardar, char *mensaje, char *mensajeError, int rangoMin, i
 
     return error;
 }
+
+
 /** \brief Pide, valida y devuelve una cadena
  *
  * \param char* guardar: variable donde se va a guardar la cadena
@@ -315,6 +325,8 @@ int getString(char *guardar, char *mensaje, char *mensajeError, int rangoMin, in
 
     return error;
 }
+
+
 /** \brief Inicializa los campos de una estructura en 0
  *
  * \param eProductos lista[] recibe la estructura a inicializar
@@ -329,6 +341,8 @@ void inicializarEstructura(eProductos lista[], int tam)
 			lista[i].isEmpty = 0;
 		}
 }
+
+
 /** \brief Busca un lugar indice libre para cargar
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -357,6 +371,7 @@ int indexLibre(eProductos lista[], int tam)
 	return index;
 }
 
+
 /** \brief Busca el indice donde se encuentra el id recibido
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -384,6 +399,7 @@ int buscarIndexId(eProductos lista[], int tam, int id)
 	return index;
 }
 
+
 /** \brief Pide datos y carga una estructura
  *
  * \param int newId: recibe el id de la nueva estructura
@@ -410,6 +426,7 @@ eProductos altaProducto(int newId)
 	return productoIngresado;
 }
 
+
 /** \brief Pide datos y carga una estructura
  *
  * \return retorna una estructura con datos cargados
@@ -424,6 +441,8 @@ eJugador cargarJugador()
 	nuevoJugador.promedioGoles = (float)nuevoJugador.golesMetidos/nuevoJugador.partidosJugados;
 	return nuevoJugador;
 }
+
+
 /** \brief Libera el lugar e inicializa todo en 0
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -459,6 +478,7 @@ int bajaProducto(eProductos lista[], int id, int tam)
 	return error;
 }
 
+
 /** \brief Borra un producto de la estructura segun el id que indique el usuario
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -486,6 +506,7 @@ int borrarProducto(eProductos lista[], int tam, int ultimoId)
 	return error;
 }
 
+
 /** \brief Carga un producto en un indice vacio de la estructura
  *
  * \param eProductos lista[] recibe la estructura a cargar
@@ -508,6 +529,7 @@ void cargarProducto(eProductos lista[], int newId, int tam)
 	}
 }
 
+
 /** \brief Carga un producto en un indice vacio de la estructura
  *
  * \param eProductos lista[] recibe la estructura a cargar
@@ -525,6 +547,7 @@ void altaJugador(eJugador lista[], int tam)
 		}
 	}
 }
+
 
 /** \brief Modifica un producto de la estructura segun id
  *
@@ -545,7 +568,7 @@ int modificarProducto(eProductos lista[], int ultimoId, int tam)
 	if(lista != NULL)
 	{
 		mostrarProductos(lista, tam);
-		idMod = cargarUnEntero("Ingrese el id de producto a modificar: ", "Error, ingrese un id valido: ", 999, ultimoId, 4);
+		idMod = cargarUnEntero("Ingrese el id de producto a modificar: ", "Error, ingrese un id valido: ", 999, 1003, 4);
 		indexMod = buscarIndexId(lista, tam, idMod);
 		do{
 			   	printf("\n***************************\n");
@@ -601,6 +624,7 @@ int modificarProducto(eProductos lista[], int ultimoId, int tam)
 	return error;
 }
 
+
 /** \brief Muestra los campos de las estructuras cargadas
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -623,6 +647,7 @@ void mostrarProductos(eProductos lista[], int tam)
 	}
 }
 
+
 /** \brief Muestra una de las estructuras cargadas
  *
  * \param eProductos lista recibe la estructura en una posicion a mostrar
@@ -632,6 +657,68 @@ void mostrarUnProducto(eProductos lista)
 {
 	printf("%4d %15s    \t%4d  \t%4d\t%.2f\n",lista.idProducto, lista.descripcion,
 		    lista.nacionalidad, lista.tipo, lista.precio);
+}
+
+/** \brief Muestra los campos de las estructuras cargadas con su descripcion y tipo
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int tam: el tamaño de lugares disponibles
+ *
+ */
+void mostrarProductosCompleto(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo)
+{
+	int i;
+	if(lista != NULL)
+	{
+		printf("\nID	DESCRIPCION	 NACIONALIDAD  	 TIPO 	PRECIO\n");
+		for (i = 0; i < tam; ++i) {
+			if(lista[i].isEmpty ==1)
+			{
+				mostrarUnProductosCompleto(lista[i], nac, tipoProd, tamNac, tamTipo);
+			}
+		}
+	}
+}
+
+
+void mostrarProductosCompletoSegunTipo(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int criterio)
+{
+	int i;
+	if(lista != NULL){
+		printf("\nID	DESCRIPCION	 NACIONALIDAD  	 TIPO 	PRECIO\n");
+		for (i = 0; i < tam; ++i) {
+			if(lista[i].isEmpty ==1 && lista[i].tipo == criterio){
+				mostrarUnProductosCompleto(lista[i], nac, tipoProd, tamNac, tamTipo);
+			}
+		}
+	}
+}
+
+/** \brief Muestra una de las estructuras cargadas con sus descripcionesy tipo
+ *
+ * \param eProductos lista recibe la estructura en una posicion a mostrar
+ * \param eNacionalidad nac recibe la estructura en una posicion a mostrar
+ * \param eTipoProduco tipoProd recibe la estructura en una posicion a mostrar
+ *
+ */
+void mostrarUnProductosCompleto(eProductos lista, eNacionalidad nac[], eTipoProduco tipoProd[], int tamNac, int tamTipo)
+{
+	int n;
+	int t;
+	for (n = 0; n < tamNac; ++n) {
+		if(lista.nacionalidad == nac[n].idNacionalidad)
+		{
+			for (t = 0; t < tamTipo; ++t) {
+				if(lista.tipo == tipoProd[t].idTipo)
+				{
+					printf("%4d %15s    \t%8s  \t%8s\t%.2f\n",lista.idProducto, lista.descripcion,
+						     nac[n].descripcionNacionalidad, tipoProd[t].descripcionTipo, lista.precio);
+					break;
+				}
+			}
+		}
+	}
+
 }
 
 
@@ -649,6 +736,8 @@ void eSort(eProductos *prodUno, eProductos *prodDos)
 	*prodUno = *prodDos;
 	*prodDos = prodAux;
 }
+
+
 /** \brief Ordena una estructura segun el precio
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -683,10 +772,11 @@ void sortEstructuraPrecio(eProductos lista[], int tam, int criterio)
 		}
 	}
 }
+
+
 /** \brief Muestra El o los productos mas caros
  *
  * \param eProductos lista[] recibe la estructura a analizar
- * \param int criterio: criterio de ordenamiento mayor menor = 1 // menor mayor = 0
  * \param int tam: el tamaño de lugares disponibles
  */
 void prodMasCaros(eProductos lista[], int tam)
@@ -733,13 +823,112 @@ void prodMasCaros(eProductos lista[], int tam)
 	}
 }
 
+/** \brief Muestra El o los productos mas caros segun el tipo
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int criterio: obtiene el tipo de producto+
+ * \param int tam: el tamaño de lugares disponibles
+ */
+void tipoMasCaros(eProductos lista[], int tam, int criterio)
+{
+	eProductos aux[tam];
+	int cont;
+	cont=0;
+	int i;
+	if(lista != NULL)
+	{
+		for (i = 0; i < tam; ++i) {
+			if(lista[i].tipo == criterio)
+			{
+				aux[cont] = lista[i];
+				cont++;
+			}
+		}
+		prodMasCaros(aux, cont);
+	}
+}
+/** \brief Muestra El producto mas barato
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int criterio: tipo de producto a analizar
+ * \param int tam: el tamaño de lugares disponibles
+ */
+void masBaratoTipo(eProductos lista[], int tam, int criterio)
+{
+	eProductos auxLista;
+	int i;
+	if(lista != NULL)
+	{
+		for (i = 0; i < tam; ++i){
+			if((lista[i].tipo == criterio && lista[i].isEmpty == 1) || i ==0)
+			{
+				if(lista[i].precio<auxLista.precio || i==0)
+				{
+					auxLista = lista[i];
+				}
+			}
+		}
+	}
+	menuTipo();
+	printf("\nEl producto mas barato de tipo %d es:\n\n", criterio);
+	mostrarUnProducto(auxLista);
+}
+
+/** \brief Muestra los productos mayores al precio indicado por el usuario
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int criterio: tipo de producto a analizar
+ * \param int precio: precio minimo de producto
+ * \param int tam: el tamaño de lugares disponibles
+ */
+void masMontoTipo(eProductos lista[], int tam, int precio, int criterio)
+{
+	int i;
+	int band;
+	band = 1;
+	if(lista != NULL)
+	{
+		for (i = 0; i < tam; ++i){
+			if((lista[i].tipo == criterio && lista[i].isEmpty == 1)){
+				if(lista[i].precio>=precio){
+					mostrarUnProducto(lista[i]);
+					band = 0;
+				}
+			}
+		}
+		if(band==1){
+			printf("No hay productos de tipo %d con un precio mayor a $%d", criterio, precio);
+		}
+	}
+}
+
+/** \brief Muestra productos segun nacionalidad
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int criterio: nacionalidad a analizar
+ * \param int tam: el tamaño de lugares disponibles
+ */
+void mostrarProdNac(eProductos lista[], int tam, int criterio)
+{
+	int i;
+	if(lista != NULL){
+		for (i = 0; i < tam; ++i){
+			if((lista[i].nacionalidad == criterio && lista[i].isEmpty == 1)){
+				mostrarUnProducto(lista[i]);
+			}
+		}
+	}
+
+}
+
+
 /** \brief Muestra el promedio de los productos segun el tipo
  *
  * \param eProductos lista[] recibe la estructura a analizar
  * \param int criterio: segun el criterio se imprime el tipo
  * \param int tam: el tamaño de lugares disponibles
  */
-void precioTipoProd(eProductos lista[], int tam, int criterio)
+void promedioTipoProd(eProductos lista[], int tam, int criterio)
 {
 	eProductos auxLista[tam];
 	int i;
@@ -775,6 +964,7 @@ void precioTipoProd(eProductos lista[], int tam, int criterio)
 		printf("El promedio de %s es: $%.2f", tipo, prom);
 	}
 }
+
 
 /** \brief Saca el promedio de los numeros cargados en un vector
  *
@@ -836,6 +1026,7 @@ void sortEstructuraDesc(eProductos lista[], int tam, int criterio)
 	}
 }
 
+
 /** \brief Inicializa los campos de un array en -1
  *
  * \param int lista[] recibe el array a inicializar
@@ -851,6 +1042,8 @@ void inicializarArray(int lista[], int tam)
 		lista[i]= -1;
 	}
 }
+
+
 /** \brief Busca un lugar indice libre para cargar
  *
  * \param int lista[] recibe el array a analizar
@@ -878,6 +1071,7 @@ int buscarLibre(int lista[], int tam)
 
 }
 
+
 /** \brief Carga un producto en un indice vacio del array
  *
  * \param int array[] recibe el array a cargar
@@ -895,6 +1089,7 @@ void cargarArray(int array[], int tam, int max, int min)
 	}
 }
 
+
 /** \brief Carga un array con letras
  *
  * \param int array[] recibe el array a cargar
@@ -911,6 +1106,7 @@ void cargarArrayLetras(char array[], int tam, int max, int min)
 		getString(&array[i], "Ingrese una letra: ", "Error, ingrese una letra: ", min, max, 5);
 	}
 }
+
 
 /** \brief Saca el promedio de los numeros cargados en un vector
  *
@@ -933,6 +1129,7 @@ float promedioVector(int lista[], int tam)
 	return prom;
 }
 
+
 /** \brief Saca la suma de numeros cargados en un vector
  *
  * \param int lista[] recibe el array a analizar
@@ -952,6 +1149,8 @@ int sumarVector(int array[], int tam)
 	}
 	return acum;
 }
+
+
 /** \brief Muestra en la pantalla los numeros en las posiciones impares
  *
  * \param int lista[] recibe el array a analizar
@@ -972,6 +1171,7 @@ void posImparVector(int array[], int tam)
 			}
 		}
 }
+
 
 /** \brief Muestra la cantidad de numeros positivos o negativos segun el criterio
  *
@@ -1019,6 +1219,7 @@ int cantPosNeg(int array[], int tam, int criterio)
 	return cant;
 }
 
+
 /** \brief Muestra la cantidad de numeros pares o impares segun el criterio
  *
  * \param int lista[]: recibe el array a analizar
@@ -1065,6 +1266,7 @@ int cantParImpar(int array[], int tam, int criterio)
 	return cant;
 }
 
+
 /** \brief Da la suma de los numeros pares de un array
  *
  * \param int lista[]: recibe el array a analizar
@@ -1087,6 +1289,8 @@ int sumaPar(int array[], int tam)
 	}
 	return sumPar;
 }
+
+
 /** \brief Da la suma de los numeros positivos de un array
  *
  * \param int lista[]: recibe el array a analizar
@@ -1110,6 +1314,7 @@ int sumaPos(int array[], int tam)
 	return sumaPos;
 }
 
+
 /** \brief Muestra el numero mayor de los pares
  *
  * \param int lista[]: recibe el array a analizar
@@ -1131,6 +1336,7 @@ int mayorPar(int array[], int tam)
 	}
 	return mayorPar;
 }
+
 
 /** \brief Muestra el numero mayor de los impares
  *
@@ -1154,6 +1360,7 @@ int mayorImpar(int array[], int tam)
 	return mayorImpar;
 }
 
+
 /** \brief Muestra el numero menor de un array
  *
  * \param int lista[]: recibe el array a analizar
@@ -1175,6 +1382,7 @@ int numMin(int array[], int tam)
 	}
 	return numMenor;
 }
+
 
 /** \brief Muestra un vector segun el criterio
  *
@@ -1294,6 +1502,7 @@ int mostrarClientes(int id[], char civil[][10], int edad[], int temperatura[], c
 	return clientes;
 }
 
+
 /** \brief Muestra un cliente segun la ubicacion indicada
  *
  * \param int id[]: recibe el id a mostrar
@@ -1308,6 +1517,8 @@ void mostrarUnClientes(int id, char civil[], int edad, int temperatura, char gen
 {
     printf("%d  --   %s   --    %d    --    %d    --    %s\n", id, civil, edad, temperatura, genero);
 }
+
+
 /** \brief Muestra todos los numeros cargados en un vector
  *
  * \param int array[]: recibe el array a mostrar
@@ -1323,6 +1534,8 @@ void mostrarVector(int array[], int tam)
 		printf("%d ", array[i]);
 	}
 }
+
+
 /** \brief Suma Dos numeros enteros.
  *
  * \param int numUno recibe el primer operando
@@ -1339,6 +1552,7 @@ int suma(int numUno, int numDos)
 	return resultado;
 }
 
+
 /** \brief Saca el promedio de la suma de numeros y la cantidad de numeros que eran
  *
  * \param int num: Suma de los numeros de la que se quiere sacar el promedio
@@ -1353,6 +1567,7 @@ float promedio(int num, int tam)
 	promedio =(float) num/tam;
 	return promedio;
 }
+
 
 /** \brief Busca el numero mayor de Tres numeros
  *
@@ -1385,6 +1600,8 @@ int numMayorTres(int numUno, int numDos, int numTres)
 
 	return numMayor;
 }
+
+
 /** \brief Busca el numero del medio de Tres numeros, muestra el numero del medio de los 3 en caso de que lo haya
  *
  * \param int numUno: primer numero
@@ -1422,7 +1639,7 @@ void numMedioTres(int numUno, int numDos, int numTres)
 	}
 }
 
-//
+
 /** \brief Verifica que el numero sea par o impar
  *
  * \param int numUno: recibe el dato a analizar
@@ -1443,6 +1660,7 @@ int numParImpar(int num)
 	return parImpar;
 }
 
+
 /** \brief Calcula el factorial de un numero
  *
  * \param int num recibe un operando
@@ -1450,6 +1668,7 @@ int numParImpar(int num)
  *
  */
 unsigned long factorial(int num)
+
 {
 	long fact;
 	fact = 0;
@@ -1461,6 +1680,7 @@ unsigned long factorial(int num)
 	}
 	return fact;
 }
+
 //FUNCIONES NO USAAR
 void mostrarUnaEdad(int edad)
 {

@@ -54,6 +54,10 @@ int main()
             	clase9();
             	limpiar();
             	break;
+            case 10:
+            	clase10();
+            	limpiar();
+            	break;
         }
     }while(clase != 0);
     return 0;

@@ -19,4 +19,5 @@ void clase6();
 void clase7();
 void clase8();
 void clase9();
+void clase10();
 #endif /* MENUS_H_ */

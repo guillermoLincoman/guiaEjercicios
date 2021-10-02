@@ -33,6 +33,34 @@ typedef struct
 	int partidosJugados;
 	float promedioGoles;
 }eJugador;
+
+typedef struct
+{
+    int idCurso;//fk
+    char descripcion[30];
+    int duracionCurso;
+}eCurso;
+
+typedef struct
+{
+    int legajo;
+    char nombre[30];
+    float promedio;
+    int idCurso;//pk
+}eAlumno;
+
+typedef struct
+{
+    int idNacionalidad ;
+    char descripcionNacionalidad[30];
+}eNacionalidad;
+
+
+typedef struct
+{
+    int idTipo  ;
+    char descripcionTipo[30];
+}eTipoProduco;
 void menuTipo();
 void menuNacionalidad();
 //Funciones Extras
@@ -61,11 +89,18 @@ void altaJugador(eJugador lista[], int tam);
 int modificarProducto(eProductos lista[], int ultimoId, int tam);
 void mostrarProductos(eProductos lista[], int tam);
 void mostrarUnProducto(eProductos lista);
+void mostrarProductosCompleto(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo);
+void mostrarUnProductosCompleto(eProductos lista, eNacionalidad nac[], eTipoProduco tipoProd[], int tamNac, int tamTipo);
+void mostrarProductosCompletoSegunTipo(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int criterio);
 void eSort(eProductos *prodUno, eProductos *prodDos);
 void sortEstructuraPrecio(eProductos lista[], int tam, int criterio);
 void sortEstructuraDesc(eProductos lista[], int tam, int criterio);
 void prodMasCaros(eProductos lista[], int tam);
-void precioTipoProd(eProductos lista[], int tam, int criterio);
+void tipoMasCaros(eProductos lista[], int tam, int criterio);
+void masBaratoTipo(eProductos lista[], int tam, int criterio);
+void masMontoTipo(eProductos lista[], int tam, int precio, int criterio);
+void mostrarProdNac(eProductos lista[], int tam, int criterio);
+void promedioTipoProd(eProductos lista[], int tam, int criterio);
 float promedioProductos(eProductos lista[], int tam);
 /************************************************************************/
 

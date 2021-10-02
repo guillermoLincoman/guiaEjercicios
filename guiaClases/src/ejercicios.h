@@ -46,4 +46,8 @@ void ejercicioOchoUno();
 void ejercicioOchoDos();
 //Clase 9
 void ejercicioNueveUno();
+//Clase 10
+void ejercicioDiezUno();
+void ejercicioDiezDos();
+void ejercicioDiezTres();
 #endif /* EJERCICIOS_H_ */

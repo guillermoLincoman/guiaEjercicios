@@ -22,6 +22,7 @@ void menuClases()
     printf("* 7. CLASE 7                  *\n");
     printf("* 8. CLASE 8                  *\n");
     printf("* 9. CLASE 9                  *\n");
+    printf("*10. CLASE 10                 *\n");
     printf("* 0. SALIR                    *\n");
     printf("*******************************\n");
 }
@@ -339,6 +340,40 @@ void clase9()
 				ejercicioNueveUno();
 				limpiar();
 				break;
+		}
+    }while(ejercicio != 0);
+}
+
+
+void clase10()
+{
+	int ejercicio;
+    do{
+    	printf("\n*******************************\n");
+    	printf("* GUIA DE EJERCICIOS - CLASE 10*\n");
+    	printf("*******************************\n");
+    	printf("* Seleccione Ejercicio        *\n");
+    	printf("*                             *\n");
+    	printf("* 1. Ejercicio 10-1:          *\n");
+    	printf("* 2. Ejercicio 10-2:          *\n");
+    	printf("* 3. Ejercicio 10-3:          *\n");
+    	printf("* 0. SALIR                    *\n");
+    	printf("*******************************\n");
+    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 3, 4);
+		switch(ejercicio)
+		{
+			case 1:
+				ejercicioDiezUno();
+				limpiar();
+			break;
+			case 2:
+				ejercicioDiezDos();
+				limpiar();
+			break;
+			case 3:
+				ejercicioDiezTres();
+				limpiar();
+			break;
 		}
     }while(ejercicio != 0);
 }
