@@ -847,6 +847,58 @@ void tipoMasCaros(eProductos lista[], int tam, int criterio)
 		prodMasCaros(aux, cont);
 	}
 }
+/** \brief Muestra El o los productos mas caros segun el tipo
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param eNacionalidad nac[] recibe la estructura a analizar
+ * \param eTipoProduco tipoProd[] recibe la estructura a analizar
+ * \param int tam: el tamaño de lugares disponibles
+ * \param int tamNac: cantidad de nacionalidades
+ * \param int tamTipo: cantidad de tipos
+ * \param int criterio: obtiene el tipo de producto
+ */
+int tiposConMasProd(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo)
+{
+	int error;
+	int i;
+	int j;
+	int contador[tamTipo];
+	int mayor;
+	inicializarContador(contador, tamTipo);
+	error = 0;
+	if(lista != NULL && tipoProd != NULL && nac != NULL)
+	{
+		for (i = 0; i < tam; ++i){
+			for (j = 0; j < tamTipo; ++j){
+				if(lista[i].tipo == tipoProd[j].idTipo){
+					contador[j]++;
+					error = 1;
+				}
+			}
+		}
+		mayor = numMayor(contador, tamTipo);
+		printf("\n\nLos tipos con mas productos son:\n");
+		for (i = 0; i < tamTipo; ++i) {
+			if (contador[i] == mayor){
+				printf("%s con %d productos\n", tipoProd[i].descripcionTipo, mayor);
+			}
+		}
+	}
+	return error;
+}
+
+int nacionalidadSoloIphone(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int criterioTipo)
+{
+	int error;
+	error = 0;
+	if(lista != NULL && tipoProd != NULL && nac != NULL)
+	{
+		printf("mañana sale");
+	}
+	return error;
+}
+
+
 /** \brief Muestra El producto mas barato
  *
  * \param eProductos lista[] recibe la estructura a analizar
@@ -1043,6 +1095,21 @@ void inicializarArray(int lista[], int tam)
 	}
 }
 
+/** \brief Inicializa los campos de un array contador
+ *
+ * \param int lista[] recibe el array a inicializar
+ * \param int tam: el tamaño de lugares de la estructura
+ *
+ */
+void inicializarContador(int lista[], int tam)
+{
+	int i;
+
+	for(i=0;i<tam;i++)
+	{
+		lista[i]= 0;
+	}
+}
 
 /** \brief Busca un lugar indice libre para cargar
  *
@@ -1107,6 +1174,28 @@ void cargarArrayLetras(char array[], int tam, int max, int min)
 	}
 }
 
+
+/** \brief busca el numero mayor de un array
+ *
+ * \param int lista[] recibe el array a analizar
+ * \param int tam: el tamaño del array
+ *
+ * \return retorna el numero mayor del array
+ *
+ */
+int numMayor(int array[], int tam)
+{
+	int numMayor;
+	int i;
+
+	for (i = 0; i < tam; ++i) {
+		if (array[i]> numMayor || i == 0){
+			numMayor = array[i];
+		}
+	}
+
+	return numMayor;
+}
 
 /** \brief Saca el promedio de los numeros cargados en un vector
  *

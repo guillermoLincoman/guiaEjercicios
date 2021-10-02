@@ -97,6 +97,8 @@ void sortEstructuraPrecio(eProductos lista[], int tam, int criterio);
 void sortEstructuraDesc(eProductos lista[], int tam, int criterio);
 void prodMasCaros(eProductos lista[], int tam);
 void tipoMasCaros(eProductos lista[], int tam, int criterio);
+int tiposConMasProd(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo);
+int nacionalidadSoloIphone(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int criterioTipo);
 void masBaratoTipo(eProductos lista[], int tam, int criterio);
 void masMontoTipo(eProductos lista[], int tam, int precio, int criterio);
 void mostrarProdNac(eProductos lista[], int tam, int criterio);
@@ -107,6 +109,7 @@ float promedioProductos(eProductos lista[], int tam);
 //FUNCIONES ARRAYS
 //Principales ARRAYS
 void inicializarArray(int lista[], int tam);
+void inicializarContador(int lista[], int tam);
 int buscarLibre(int lista[], int tam);
 
 //Carga y descarga de datos ARRAYS
@@ -114,6 +117,7 @@ void cargarArray(int array[], int tam, int max, int min);
 void cargarArrayLetras(char array[], int tam, int max, int min);
 
 //Operaciones matematicas ARRAYS
+int numMayor(int array[], int tam);
 float promedioVector(int lista[], int tam);
 int sumarVector(int array[], int tam);
 //imprime numeros en posiciones impares

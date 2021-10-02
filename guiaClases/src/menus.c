@@ -356,10 +356,9 @@ void clase10()
     	printf("*                             *\n");
     	printf("* 1. Ejercicio 10-1:          *\n");
     	printf("* 2. Ejercicio 10-2:          *\n");
-    	printf("* 3. Ejercicio 10-3:          *\n");
     	printf("* 0. SALIR                    *\n");
     	printf("*******************************\n");
-    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 3, 4);
+    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 2, 4);
 		switch(ejercicio)
 		{
 			case 1:
@@ -370,8 +369,56 @@ void clase10()
 				ejercicioDiezDos();
 				limpiar();
 			break;
-			case 3:
-				ejercicioDiezTres();
+
+		}
+    }while(ejercicio != 0);
+}
+
+void clase11()
+{
+	int ejercicio;
+    do{
+    	printf("\n*******************************\n");
+    	printf("* GUIA DE EJERCICIOS - CLASE 11*\n");
+    	printf("*******************************\n");
+    	printf("* Seleccione Ejercicio        *\n");
+    	printf("*                             *\n");
+    	printf("* 1. Ejercicio 11-1:          *\n");
+    	printf("* 0. SALIR                    *\n");
+    	printf("*******************************\n");
+    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 1, 4);
+		switch(ejercicio)
+		{
+			case 1:
+				ejercicioOnceUno();
+				limpiar();
+			break;
+		}
+    }while(ejercicio != 0);
+}
+
+void clase12()
+{
+	int ejercicio;
+    do{
+    	printf("\n*******************************\n");
+    	printf("* GUIA DE EJERCICIOS - CLASE 12*\n");
+    	printf("*******************************\n");
+    	printf("* Seleccione Ejercicio        *\n");
+    	printf("*                             *\n");
+    	printf("* 1. Ejercicio 11-1:          *\n");
+    	printf("* 2. Ejercicio 11-2:          *\n");
+    	printf("* 0. SALIR                    *\n");
+    	printf("*******************************\n");
+    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 2, 4);
+		switch(ejercicio)
+		{
+			case 1:
+				ejercicioDoceUno();
+				limpiar();
+			break;
+			case 2:
+				//ejercicioDoceDos();
 				limpiar();
 			break;
 		}

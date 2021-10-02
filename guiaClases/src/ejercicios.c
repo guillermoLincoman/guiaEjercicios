@@ -824,11 +824,11 @@ typedef struct
 */
 }
 
-void ejercicioDiezTres()
+void ejercicioOnceUno()
 {
-	eProductos producto[3]={{1000, "Guillermo",2,2,820,1},
-							{1001,"Ruben",3,2,830,1},
-							{1002,"lincoman",1,3,504,1}};
+	eProductos producto[3]={{1000, "Guillermo",2,4,820,1},
+							{1001,"Ruben",3,4,830,1},
+							{1002,"lincoman",1,4,504,1}};
 	eNacionalidad nacionalidad[3]={{1, "EEUU"},
 								   {2,"CHINA"},
 								   {3,"OTRO"}};
@@ -846,28 +846,28 @@ void ejercicioDiezTres()
 	proxId = 1000;
 	//inicializarEstructura(producto, 3);
 	 do{
-		    	printf("\n*************************************\n");
-		    	printf("*    Menu Opciones                  *\n");
-		    	printf("*************************************\n");
-		    	printf("*                                   *\n");
-		    	printf("* 1. ALTA                           *\n");
-		    	printf("* 2. BAJA                           *\n");
-		    	printf("* 3. MODIFICACION                   *\n");
-		    	printf("* 4. LISTADO Productos              *\n");
-		    	printf("* 5. LISTADO por precio             *\n");
-		    	printf("* 6. LISTADO por descripcion        *\n");
-		    	printf("* 7. El/los  productos más caros.   *\n");
-		    	printf("* 8. $ promedio x tipo de producto. *\n");
-		    	printf("* 9. De los Iphone el más barato    *\n");
-		    	printf("* 10.Los productos MADE IN CHINA.   *\n");
-		    	printf("* 11. Las MAC que salen + de $700   *\n");
-		    	printf("* 12. El/Los Accesorios más caros   *\n");
-		    	printf("* 13. LISTA productos y descripción *\n");
-		    	printf("* 14. LISTA de productos por tipo   *\n");
-		    	printf("* 15. El/los tipos con mas productos*\n");
-		    	printf("* 0. SALIR                          *\n");
-		    	printf("*************************************\n");
-		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 14, 4);
+		    	printf("\n********************************************\n");
+		    	printf("*    Menu Opciones                         *\n");
+		    	printf("********************************************\n");
+		    	printf("*                                          *\n");
+		    	printf("* 1. ALTA                                  *\n");
+		    	printf("* 2. BAJA                                  *\n");
+		    	printf("* 3. MODIFICACION                          *\n");
+		    	printf("* 4. LISTADO Productos                     *\n");
+		    	printf("* 5. LISTADO por precio                    *\n");
+		    	printf("* 6. LISTADO por descripcion               *\n");
+		    	printf("* 7. El/los  productos más caros.          *\n");
+		    	printf("* 8. $ promedio x tipo de producto.        *\n");
+		    	printf("* 9. De los Iphone el más barato           *\n");
+		    	printf("* 10.Los productos MADE IN CHINA.          *\n");
+		    	printf("* 11.Las MAC que salen + de $700           *\n");
+		    	printf("* 12.El/Los Accesorios más caros           *\n");
+		    	printf("* 13.LISTA productos y descripción         *\n");
+		    	printf("* 14.LISTA de productos por tipo           *\n");
+		    	printf("* 15.El/los tipos con mas productos        *\n");
+		    	printf("* 0. SALIR                                 *\n");
+		    	printf("********************************************\n");
+		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 15, 4);
 				switch(opcion)
 				{
 					case 1:
@@ -1005,8 +1005,231 @@ void ejercicioDiezTres()
 						}
 						limpiar();
 						break;
+					case 15:
+						if(band == 1)
+						{
+							tiposConMasProd(producto, nacionalidad, tipoProducto, 3, 3, 4);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
 				}
 		    }while(opcion != 0);
- 	//printf("* 13. LISTA productos y descripción *\n");
+}
 
+void ejercicioDoceUno()
+{
+	int tamProd;
+	int tamNac;
+	int tamTipo;
+	tamProd=3;
+	tamNac=3;
+	tamTipo=4;
+
+	eProductos producto[3]={{1000, "Guillermo",2,4,820,1},
+							{1001,"Ruben",3,4,830,1},
+							{1002,"lincoman",1,4,504,1}};
+	eNacionalidad nacionalidad[3]={{1, "EEUU"},
+								   {2,"CHINA"},
+								   {3,"OTRO"}};
+
+	eTipoProduco tipoProducto[4]={{1, "Iphone"},
+								  {2,"Ipad"},
+								  {3,"Mac"},
+								  {4,"Accesorios"}};
+	int opcion;
+	int proxId;
+	int criterio;
+	int band;
+
+	//inciar en 0 cuando no hay datos harcodeados
+	band = 1;
+	proxId = 1000;
+	//inicializarEstructura(producto, tamProd);
+	 do{
+		    	printf("\n********************************************\n");
+		    	printf("*    Menu Opciones                         *\n");
+		    	printf("********************************************\n");
+		    	printf("*                                          *\n");
+		    	printf("* 1. ALTA                                  *\n");
+		    	printf("* 2. BAJA                                  *\n");
+		    	printf("* 3. MODIFICACION                          *\n");
+		    	printf("* 4. LISTADO Productos                     *\n");
+		    	printf("* 5. LISTADO por precio                    *\n");
+		    	printf("* 6. LISTADO por descripcion               *\n");
+		    	printf("* 7. El/los  productos más caros.          *\n");
+		    	printf("* 8. Precio promedio por tipo de producto. *\n");
+		    	printf("* 9. De los Iphone el más barato           *\n");
+		    	printf("* 10.Los productos MADE IN CHINA.          *\n");
+		    	printf("* 11.Las MAC que salen mas de $700         *\n");
+		    	printf("* 12.El/Los Accesorios más caros           *\n");
+		    	printf("* 13.LISTA productos y descripción         *\n");
+		    	printf("* 14.LISTA de productos por tipo           *\n");
+		    	printf("* 15.El/los tipos con mas productos        *\n");
+		    	printf("* 16.Nacionalidad que solo fabrica Iphone. *\n");
+		    	printf("* 17.Listado x nacionalidad alfabética.    *\n");
+		    	printf("* 18.El/los tipos con mas productos        *\n");
+		    	printf("* 19.Precio promedio por nacionalidad      *\n");
+		    	printf("* 0. SALIR                                 *\n");
+		    	printf("********************************************\n");
+		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 19, 4);
+				switch(opcion)
+				{
+					case 1:
+						band = 1;
+						cargarProducto(producto, proxId, tamProd);
+						proxId++;
+						limpiar();
+						break;
+					case 2:
+						if(band == 1)
+						{
+							borrarProducto(producto, tamProd, proxId);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 3:
+						if(band == 1)
+						{
+							modificarProducto(producto, proxId, tamProd);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 4:
+						if(band == 1)
+						{
+							mostrarProductos(producto, tamProd);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 5:
+						if(band == 1)
+						{
+							sortEstructuraPrecio(producto, tamProd, 0);
+							mostrarProductos(producto, tamProd);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 6:
+						if(band == 1)
+						{
+							sortEstructuraDesc(producto, tamProd, 0);
+							mostrarProductos(producto, tamProd);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 7:
+						if(band == 1)
+						{
+							prodMasCaros(producto, tamProd);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 8:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							promedioTipoProd(producto, tamProd, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 9:
+						if(band == 1)
+						{
+							masBaratoTipo(producto, tamProd, 1);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 10:
+						if(band == 1)
+						{
+							menuNacionalidad();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							mostrarProdNac(producto, tamProd, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 11:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							masMontoTipo(producto, tamProd, 700, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 12:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							tipoMasCaros(producto, tamProd, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 13:
+						if(band == 1)
+						{
+							mostrarProductosCompleto(producto, nacionalidad, tipoProducto, tamProd, tamNac, tamTipo);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 14:
+						if(band == 1)
+						{
+							menuTipo();
+							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
+							mostrarProductosCompletoSegunTipo(producto, nacionalidad, tipoProducto, tamProd, tamNac, tamTipo, criterio);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 15:
+						if(band == 1)
+						{
+							tiposConMasProd(producto, nacionalidad, tipoProducto, tamProd, tamNac, tamProd);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+					case 16:
+						if(band == 1)
+						{
+							//nacionalidadSoloIphone(producto, nacionalidad, tipoProducto, tamProd, tamNac, tamProd);
+						}else{
+							printf("\n\nNo hay productos cargados....\n");
+						}
+						limpiar();
+						break;
+
+				}
+		    }while(opcion != 0);
 }
