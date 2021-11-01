@@ -15,7 +15,7 @@ int main()
     int clase;
     do{
     	menuClases();
-    	clase = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 10, 4);
+    	clase = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 17, 4);
         switch(clase)
         {
             case 1:
@@ -56,6 +56,34 @@ int main()
             	break;
             case 10:
             	clase10();
+            	limpiar();
+            	break;
+            case 11:
+            	clase11();
+            	limpiar();
+            	break;
+            case 12:
+            	printf("En construccion");
+            	limpiar();
+            	break;
+            case 13:
+            	printf("En construccion");
+            	limpiar();
+            	break;
+            case 14:
+            	printf("En construccion");
+            	limpiar();
+            	break;
+            case 15:
+            	clase15();
+            	limpiar();
+            	break;
+            case 16:
+            	printf("En construccion");
+            	limpiar();
+            	break;
+            case 17:
+            	clase17();
             	limpiar();
             	break;
         }

@@ -417,7 +417,31 @@ eProductos altaProducto(int newId)
 	scanf("%[^\n]", productoIngresado.descripcion);
 	menuNacionalidad();
 	productoIngresado.nacionalidad=cargarUnEntero("Ingrese una naciondalidad: ", "Error, ingrese una naciondalidad valida(entre 1 y 3): ", 1, 3, 4);
-	menuTipo();
+	productoIngresado.tipo =cargarUnEntero("Ingrese un tipo: ", "Error, ingrese un tipo valido(entre 1 y 4): ", 1, 4, 4);
+	productoIngresado.precio =cargarUnEntero("Ingrese el precio: ", "Error, ingrese un precio mayor a 0: ", 0, 2147483647, 4);
+	productoIngresado.isEmpty = 1;
+
+
+	return productoIngresado;
+}
+
+/** \brief Pide datos y carga una estructura
+ *
+ * \param int newId: recibe el id de la nueva estructura
+ *
+ * \return retorna una estructura con datos cargados
+ *
+ */
+eProductos altaProductoConListas(eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int newId)
+{
+	eProductos productoIngresado;
+	productoIngresado.idProducto = newId;
+	printf("Ingrese descripcion: ");
+	fflush(stdin);
+	scanf("%[^\n]", productoIngresado.descripcion);
+	mostrarNacionalidades(nac, tamNac);
+	productoIngresado.nacionalidad=cargarUnEntero("Ingrese una naciondalidad: ", "Error, ingrese una naciondalidad valida(entre 1 y 3): ", 1, 3, 4);
+	mostrarTipos(tipoProd, tamTipo);
 	productoIngresado.tipo =cargarUnEntero("Ingrese un tipo: ", "Error, ingrese un tipo valido(entre 1 y 4): ", 1, 4, 4);
 	productoIngresado.precio =cargarUnEntero("Ingrese el precio: ", "Error, ingrese un precio mayor a 0: ", 0, 2147483647, 4);
 	productoIngresado.isEmpty = 1;
@@ -533,6 +557,28 @@ void cargarProducto(eProductos lista[], int newId, int tam)
 /** \brief Carga un producto en un indice vacio de la estructura
  *
  * \param eProductos lista[] recibe la estructura a cargar
+ * \param int newId: recibe el id que se le va a otorgar al producto
+ * \param int tam: el tamaño de lugares disponibles
+ *
+ */
+void cargarProductoConListados(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int newIde)
+{
+	int index;
+	if(lista != NULL)
+	{
+		index = indexLibre(lista, tam);
+		if(index>=0)
+		{
+			lista[index] = altaProductoConListas(nac, tipoProd, tam, tamNac, tamTipo, newIde);
+		}else{
+			printf("\nNo hay lugar....\n");
+		}
+	}
+}
+
+/** \brief Carga un producto en un indice vacio de la estructura
+ *
+ * \param eProductos lista[] recibe la estructura a cargar
  * \param int tam: el tamaño de lugares disponibles
  *
  */
@@ -624,6 +670,69 @@ int modificarProducto(eProductos lista[], int ultimoId, int tam)
 	return error;
 }
 
+/** \brief Muestra los campos de las estructuras cargadas
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int tam: el tamaño de lugares disponibles
+ *
+ */
+void mostrarNacionalidades(eNacionalidad nac[], int tam)
+{
+	int i;
+	if(nac != NULL)
+	{
+		printf("---------------------\n");
+		printf("\nID	DESCRIPCION	 \n");
+		for (i = 0; i < tam; ++i) {
+			mostrarUnaNacionalidad(nac[i]);
+		}
+	}
+}
+
+
+/** \brief Muestra una de las estructuras cargadas
+ *
+ * \param eProductos lista recibe la estructura en una posicion a mostrar
+ *
+ */
+void mostrarUnaNacionalidad(eNacionalidad nac)
+{
+	printf("---------------------\n");
+	printf("%4d %15s\n",nac.idNacionalidad, nac.descripcionNacionalidad);
+	printf("---------------------\n");
+}
+
+/** \brief Muestra los campos de las estructuras cargadas
+ *
+ * \param eProductos lista[] recibe la estructura a analizar
+ * \param int tam: el tamaño de lugares disponibles
+ *
+ */
+void mostrarTipos(eTipoProduco tipos[], int tam)
+{
+	int i;
+	if(tipos != NULL)
+	{
+		printf("---------------------\n");
+		printf("\nID	DESCRIPCION	 \n");
+		for (i = 0; i < tam; ++i) {
+				mostrarUnTipo(tipos[i]);
+		}
+	}
+}
+
+
+/** \brief Muestra una de las estructuras cargadas
+ *
+ * \param eProductos lista recibe la estructura en una posicion a mostrar
+ *
+ */
+void mostrarUnTipo(eTipoProduco tipos)
+{
+	printf("---------------------\n");
+	printf("%4d %15s\n",tipos.idTipo, tipos.descripcionTipo);
+	printf("---------------------\n");
+}
 
 /** \brief Muestra los campos de las estructuras cargadas
  *
@@ -864,20 +973,27 @@ int tiposConMasProd(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoPr
 	int j;
 	int contador[tamTipo];
 	int mayor;
+	//1. inicializo los contadores en 0
 	inicializarContador(contador, tamTipo);
 	error = 0;
 	if(lista != NULL && tipoProd != NULL && nac != NULL)
 	{
+		//2. recorro la lista de productos
 		for (i = 0; i < tam; ++i){
+			//3. recorro el tipo de producto por cada producto
 			for (j = 0; j < tamTipo; ++j){
+				//4. sumo 1 al contador correspondiente al producto
 				if(lista[i].tipo == tipoProd[j].idTipo){
 					contador[j]++;
 					error = 1;
 				}
 			}
 		}
+		//5. obtengo el valor del contador con mayor valor
 		mayor = numMayor(contador, tamTipo);
 		printf("\n\nLos tipos con mas productos son:\n");
+		//6. recorro los contadores buscando los que igualen el numero mayor
+		//e imprimo los tipos relacionando el indice del contador con el tipo
 		for (i = 0; i < tamTipo; ++i) {
 			if (contador[i] == mayor){
 				printf("%s con %d productos\n", tipoProd[i].descripcionTipo, mayor);
@@ -886,16 +1002,72 @@ int tiposConMasProd(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoPr
 	}
 	return error;
 }
-
-int nacionalidadSoloIphone(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int criterioTipo)
+//necesito saber el ide de que nacionalidad fabrica los tipos indicados
+int nacionalidadSoloUnTipo(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int criterioTipo)
 {
+	int i;
+	int j;
+	//int p;
+	int auxNac[tamNac];
+	int cont;
+	cont=0;
 	int error;
 	error = 0;
+	//inicializo el array donde voy a guardar los id en -1
+	inicializarArray(auxNac, tamNac);
+	//valido que las estructuras no sean nulas
 	if(lista != NULL && tipoProd != NULL && nac != NULL)
 	{
-		printf("mañana sale");
+		//recorro la lista de productos
+		for (i = 0; i < tam; ++i) {
+			//si el tipo de la lista es igual al criterio "iphone en este caso" entra al if
+			if(lista[i].tipo == criterioTipo){
+				//si se cumple la condicion guardo el id del producto en el array de ids
+				auxNac[cont] = lista[i].nacionalidad;
+				//si el id anterior es igual el id actual entra al if
+				if(auxNac[cont-1]==auxNac[cont])
+				{
+					//el id actual vuelve a setearse en -1
+					auxNac[cont]=-1;
+					//vuelvo a la posicion anterior
+					cont--;
+				}
+				//sumo uno una vez cargado, en caso de entrar al if anterior vuelvo al proximo Id
+				//Una vez recorrido el array
+				cont++;
+				//Una vez cargado un Id indico que funciono y error = 1
+				error=1;
+			}
+		}
+		//Con los id que tiene al menos un iphone
+		//vuelvo a recorrer los productos "i"
+		for (i = 0; i < tam; ++i) {
+			//recorro las nacionalidades que tienen iphone "j"
+			for (j = 0; j < cont-1; ++j) {
+				//si la nacionalidad del producto en i es igual a la nacionalidad en j
+				if(lista[i].nacionalidad == auxNac[j]){
+					//si el producto de la nacionalidad cargada anteriormente
+					//tiene un producto diferente al del criterio de tipo entra
+					if(lista[i].tipo != criterioTipo)
+					{
+						//borro el id cargado y borro un lugar del contador
+						auxNac[j]=-1;
+						cont--;
+					}
+				}
+			}
+		}
+		//recorro las nacionalidade
+		for (i = 0; i < tamNac; ++i) {
+				if(nac[i].idNacionalidad==auxNac[0])
+				{
+					printf("La nacionalidad %s solo hace ", nac[i].descripcionNacionalidad);
+				}
+		}
 	}
 	return error;
+
+
 }
 
 
@@ -1624,6 +1796,19 @@ void mostrarVector(int array[], int tam)
 	}
 }
 
+/** \brief Muestra todos los numeros cargados en un vector
+ *
+ * \param int array[]: recibe el array a mostrar
+ * \param int tam: el tamaño del array
+ *
+ */
+void swapArray(int *numUno, int *numDos)
+{
+	int aux;
+	 aux = *numUno;
+	*numUno = *numDos;
+	*numDos =  aux;
+}
 
 /** \brief Suma Dos numeros enteros.
  *
@@ -1865,4 +2050,109 @@ void mostrarJugadores(eJugador lista[], int tam)
 		}
 	}
 }
+
+/** \brief Carga un numero por puntero
+ *
+ * \param int *num = el numero ingresado
+ *
+ * \return Retorna 0 si se carga y 1 si hubo error
+*/
+int cargarNumero(int *num)
+{
+	int error;
+	error = 1;
+	if(num != NULL)
+	{
+		scanf("%d", num);
+		error = 0;
+	}
+	return error;
+}
+
+/** \brief Carga un numero por puntero
+ *
+ * \param int *numUno = Primer numero a analizar
+ * \param int *numDos = Segundo numero a analizar
+ *
+ * \return Retorna 0 si se swape y 1 si no se swapeo o hubo un error
+*/
+int numeroMasGrande(int *numUno, int *numDos)
+{
+	int error= 1;
+	int aux;
+	if(numUno != NULL && numDos != NULL)
+	{
+
+		if(*numUno < *numDos)
+		{
+			error = 0;
+			aux = *numUno;
+			*numUno = *numDos;
+			*numDos = aux;
+		}
+	}
+	return error;
+}
+
+int vectorContenido(int *vectorUno, int *vectorDos, int tam)
+{
+	int error = 1;
+	int verificador[tam];
+	int i;
+	int j;
+	if(vectorUno != NULL && vectorDos != NULL)
+	{
+		inicializarArray(verificador, tam);
+		error = 0;
+		for (i = 0; i < tam; ++i) {
+			for (j = 0; j < tam; ++j) {
+				if(vectorUno[i] == vectorDos[j]){
+					verificador[i]=0;
+				}
+			}
+		}
+
+		for (i = 0; i < tam; ++i) {
+			if(verificador[i]==0){
+				error=0;
+			}else{
+				error=1;
+				break;
+			}
+		}
+
+
+	}
+	return error;
+}
+
+int remplazarLetras(char *palabra, char letra, char letraDos)
+{
+	int tam;
+	int i;
+	int cont;
+	cont = 0;
+	tam = strlen(palabra);
+	for (i = 0; i < tam; ++i) {
+		if(palabra[i] == letra)
+		{
+			palabra[i]=letraDos;
+			cont++;
+		}
+	}
+	return cont;
+}
+
+void numMaximoEnArray(int *arrayNumero, int *mayorValor, int tam)
+{
+	int i;
+
+	for (i = 0; i < tam; ++i) {
+		if(i == 0 || *mayorValor < arrayNumero[i])
+		{
+			*mayorValor = arrayNumero[i];
+		}
+	}
+}
+
 

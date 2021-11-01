@@ -23,6 +23,8 @@ void menuClases()
     printf("* 8. CLASE 8                  *\n");
     printf("* 9. CLASE 9                  *\n");
     printf("*10. CLASE 10                 *\n");
+    printf("*11. CLASE 11                 *\n");
+    printf("*15. CLASE 15                 *\n");
     printf("* 0. SALIR                    *\n");
     printf("*******************************\n");
 }
@@ -397,30 +399,55 @@ void clase11()
     }while(ejercicio != 0);
 }
 
-void clase12()
+void clase15()
 {
 	int ejercicio;
     do{
     	printf("\n*******************************\n");
-    	printf("* GUIA DE EJERCICIOS - CLASE 12*\n");
+    	printf("* GUIA DE EJERCICIOS - CLASE 15*\n");
     	printf("*******************************\n");
     	printf("* Seleccione Ejercicio        *\n");
     	printf("*                             *\n");
-    	printf("* 1. Ejercicio 11-1:          *\n");
-    	printf("* 2. Ejercicio 11-2:          *\n");
+    	printf("* 1. Ejercicio 15-1:          *\n");
+    	printf("* 2. Ejercicio 15-2:          *\n");
+    	printf("* 3. Ejercicio 15-3:          *\n");
+    	printf("* 4. Ejercicio 15-4:          *\n");
+    	printf("* 5. Ejercicio 15-5:          *\n");
+    	printf("* 6. Ejercicio 15-6:          *\n");
+    	printf("* 7. Anexo 15:                *\n");
     	printf("* 0. SALIR                    *\n");
     	printf("*******************************\n");
-    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 2, 4);
+    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 7, 4);
 		switch(ejercicio)
 		{
 			case 1:
-				ejercicioDoceUno();
+				ejercicioQuinceUno();
 				limpiar();
-			break;
+				break;
 			case 2:
-				//ejercicioDoceDos();
+				ejercicioQuinceDos();
 				limpiar();
-			break;
+				break;
+			case 3:
+				ejercicioQuinceTres();
+				limpiar();
+				break;
+			case 4:
+				ejercicioQuinceCuatro();
+				limpiar();
+				break;
+			case 5:
+				ejercicioQuinceCinco();
+				limpiar();
+				break;
+			case 6:
+				ejercicioQuinceSeis();
+				limpiar();
+				break;
+			case 7:
+				anexoQuince();
+				limpiar();
+				break;
 		}
     }while(ejercicio != 0);
 }

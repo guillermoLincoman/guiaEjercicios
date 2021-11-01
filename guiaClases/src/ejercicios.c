@@ -1018,218 +1018,152 @@ void ejercicioOnceUno()
 		    }while(opcion != 0);
 }
 
-void ejercicioDoceUno()
+void ejercicioQuinceUno()
 {
-	int tamProd;
-	int tamNac;
-	int tamTipo;
-	tamProd=3;
-	tamNac=3;
-	tamTipo=4;
+	printf("Ejercicio 15-1:\nRealizar el ordenamiento de un vector de enteros. Para ello deberán crear una función\n que se encargue de realizar el intercambio de los dos valores que se van a ordenar (función swap),\n que solo puede recibir dos parámetros.\n\n");
 
-	eProductos producto[3]={{1000, "Guillermo",2,4,820,1},
-							{1001,"Ruben",3,4,830,1},
-							{1002,"lincoman",1,4,504,1}};
-	eNacionalidad nacionalidad[3]={{1, "EEUU"},
-								   {2,"CHINA"},
-								   {3,"OTRO"}};
+	int vectorEntero[5]={3,2,4,5,1};
+	int i;
+	int j;
+	mostrarVector(vectorEntero, 5);
+	for (i = 0; i < 5-1; ++i) {
+		for (j = i+1; j < 5; ++j) {
+			if(vectorEntero[i]>vectorEntero[j])
+			{
+				swapArray(&vectorEntero[i], &vectorEntero[j]);
+			}
+		}
+	}
+	printf("\nOrednados\n");
+	mostrarVector(vectorEntero, 5);
 
-	eTipoProduco tipoProducto[4]={{1, "Iphone"},
-								  {2,"Ipad"},
-								  {3,"Mac"},
-								  {4,"Accesorios"}};
-	int opcion;
-	int proxId;
-	int criterio;
-	int band;
-
-	//inciar en 0 cuando no hay datos harcodeados
-	band = 1;
-	proxId = 1000;
-	//inicializarEstructura(producto, tamProd);
-	 do{
-		    	printf("\n********************************************\n");
-		    	printf("*    Menu Opciones                         *\n");
-		    	printf("********************************************\n");
-		    	printf("*                                          *\n");
-		    	printf("* 1. ALTA                                  *\n");
-		    	printf("* 2. BAJA                                  *\n");
-		    	printf("* 3. MODIFICACION                          *\n");
-		    	printf("* 4. LISTADO Productos                     *\n");
-		    	printf("* 5. LISTADO por precio                    *\n");
-		    	printf("* 6. LISTADO por descripcion               *\n");
-		    	printf("* 7. El/los  productos más caros.          *\n");
-		    	printf("* 8. Precio promedio por tipo de producto. *\n");
-		    	printf("* 9. De los Iphone el más barato           *\n");
-		    	printf("* 10.Los productos MADE IN CHINA.          *\n");
-		    	printf("* 11.Las MAC que salen mas de $700         *\n");
-		    	printf("* 12.El/Los Accesorios más caros           *\n");
-		    	printf("* 13.LISTA productos y descripción         *\n");
-		    	printf("* 14.LISTA de productos por tipo           *\n");
-		    	printf("* 15.El/los tipos con mas productos        *\n");
-		    	printf("* 16.Nacionalidad que solo fabrica Iphone. *\n");
-		    	printf("* 17.Listado x nacionalidad alfabética.    *\n");
-		    	printf("* 18.El/los tipos con mas productos        *\n");
-		    	printf("* 19.Precio promedio por nacionalidad      *\n");
-		    	printf("* 0. SALIR                                 *\n");
-		    	printf("********************************************\n");
-		    	opcion = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 19, 4);
-				switch(opcion)
-				{
-					case 1:
-						band = 1;
-						cargarProducto(producto, proxId, tamProd);
-						proxId++;
-						limpiar();
-						break;
-					case 2:
-						if(band == 1)
-						{
-							borrarProducto(producto, tamProd, proxId);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 3:
-						if(band == 1)
-						{
-							modificarProducto(producto, proxId, tamProd);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 4:
-						if(band == 1)
-						{
-							mostrarProductos(producto, tamProd);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 5:
-						if(band == 1)
-						{
-							sortEstructuraPrecio(producto, tamProd, 0);
-							mostrarProductos(producto, tamProd);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 6:
-						if(band == 1)
-						{
-							sortEstructuraDesc(producto, tamProd, 0);
-							mostrarProductos(producto, tamProd);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 7:
-						if(band == 1)
-						{
-							prodMasCaros(producto, tamProd);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 8:
-						if(band == 1)
-						{
-							menuTipo();
-							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
-							promedioTipoProd(producto, tamProd, criterio);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 9:
-						if(band == 1)
-						{
-							masBaratoTipo(producto, tamProd, 1);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 10:
-						if(band == 1)
-						{
-							menuNacionalidad();
-							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
-							mostrarProdNac(producto, tamProd, criterio);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 11:
-						if(band == 1)
-						{
-							menuTipo();
-							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
-							masMontoTipo(producto, tamProd, 700, criterio);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 12:
-						if(band == 1)
-						{
-							menuTipo();
-							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
-							tipoMasCaros(producto, tamProd, criterio);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 13:
-						if(band == 1)
-						{
-							mostrarProductosCompleto(producto, nacionalidad, tipoProducto, tamProd, tamNac, tamTipo);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 14:
-						if(band == 1)
-						{
-							menuTipo();
-							criterio = cargarUnEntero("Ingrese un tipo: ", "Error, Ingrese un tipo valido (entre 1 y 4):", 1, 4, 5);
-							mostrarProductosCompletoSegunTipo(producto, nacionalidad, tipoProducto, tamProd, tamNac, tamTipo, criterio);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 15:
-						if(band == 1)
-						{
-							tiposConMasProd(producto, nacionalidad, tipoProducto, tamProd, tamNac, tamProd);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-					case 16:
-						if(band == 1)
-						{
-							//nacionalidadSoloIphone(producto, nacionalidad, tipoProducto, tamProd, tamNac, tamProd);
-						}else{
-							printf("\n\nNo hay productos cargados....\n");
-						}
-						limpiar();
-						break;
-
-				}
-		    }while(opcion != 0);
 }
+
+void ejercicioQuinceDos()
+{
+	int error;
+	int numero;
+	printf("\nEjercicio 15-2:\nRealizar una función que reciba como parámetro un puntero a entero. La función le pedirá\nal usuario que cargue un valor por medio del puntero. Retornará si pudo cargarlo o no.\n\n");
+
+	printf("Ingrese un numero: ");
+	error = cargarNumero(&numero);
+	if(error == 0)
+	{
+		printf("\nEl numero %d se ingreso correctamente...\n", numero);
+	}
+}
+
+void ejercicioQuinceTres()
+{
+	printf("\nEjercicio 15-3: (No entregar)\nModificar la biblioteca input.h para que a partir de ahora trabaje con punteros. El retorno de cada\nfunción será exclusivamente para el manejo de estados.\n\n");
+}
+
+void ejercicioQuinceCuatro()
+{
+	printf("\nEjercicio 15-4: (No entregar)\nRefactorizar el TP2 para que trabaje con punteros.\n\n");
+}
+
+void ejercicioQuinceCinco()
+{
+	int numUno;
+	int numDos;
+	int error;
+	printf("\nEjercicio 15-5\nEscriba una función que reciba dos números enteros y los devuelva ordenados. Es decir que\nen el primer parámetro debe devolver el menor valor y en el 2do. el mayor.\n\n");
+	printf("\nIngrese un numero:");
+	cargarNumero(&numUno);
+	printf("\nIngrese un otro numero:");
+	cargarNumero(&numDos);
+
+	printf("NumUno: %d NumDos: %d\n", numUno, numDos);
+	error = numeroMasGrande(&numUno, &numDos);
+	if(error == 0)
+	{
+		printf("\nEl numero se swapeo...\n");
+		printf("NumUno: %d NumDos: %d\n", numUno, numDos);
+	}else{
+		printf("\nEl numero no se swapeo...\n");
+	}
+
+}
+
+void ejercicioQuinceSeis()
+{
+	printf("\nEjercicio 15-6\nRealizar una función que reciba como parámetros dos vectores. La función\ndeberá determinar si el segundo vector está contenido en el primero.\n\n");
+	int vectorUno[5]={1,4,3,5,2};
+	int vectorDos[5]={2,5,6,3,2};
+	int vectorTres[5]={4,1,5,3,2};
+	int error;
+	error = cargarUnEntero("Prueba.. (1)Error | (2)Contenido", "Error, Prueba.. (1)Error | (2)Contenido", 1, 2, 4);
+	if(error == 1){
+		printf("\nComparamos el vector 1\n");
+		mostrarVector(vectorUno, 5);
+		printf("\nCon el vector 2\n");
+		mostrarVector(vectorDos, 5);
+
+		error = vectorContenido(vectorUno, vectorDos,5);
+	}else{
+		printf("\nComparamos el vector 1\n");
+		mostrarVector(vectorUno, 5);
+		printf("\nCon el vector 3\n");
+		mostrarVector(vectorDos, 5);
+		error = vectorContenido(vectorUno, vectorTres,5);
+	}
+	if(error == 0){
+		printf("\nEl vector Esta contenido....");
+	}else{
+		printf("\nEl vector no esta contenido....");
+	}
+}
+
+void anexoQuince()
+{
+	int ejercicio;
+    do{
+    	printf("\n*******************************\n");
+    	printf("* GUIA DE EJERCICIOS - ANEXO 15*\n");
+    	printf("********************************\n");
+    	printf("* Seleccione Ejercicio         *\n");
+    	printf("*                              *\n");
+    	printf("* 1. Ejercicio Anexo 15-1:     *\n");
+    	printf("* 2. Ejercicio Anexo 15-2:     *\n");
+    	printf("* 0. SALIR                     *\n");
+    	printf("********************************\n");
+    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 2, 4);
+		switch(ejercicio)
+		{
+			case 1:
+				ejercicioQuinceUnoAnexo();
+				limpiar();
+				break;
+			case 2:
+				ejercicioQuinceDosAnexo();
+				limpiar();
+				break;
+		}
+    }while(ejercicio != 0);
+}
+
+void ejercicioQuinceUnoAnexo()
+{
+	printf("\nEjercicio 15-1 ANEXO\nRealizar una función que reciba un puntero a char y dos char.\nLa función deberá reemplazar en la cadena cada ocurrencia del primer carácter recibido,\npor el segundo. Retornando la cantidad de reemplazos o -1 en caso de error.\n\n");
+	char palabra[10]={"juanitato"};
+	int cantidad;
+	printf("La palabra es: %s", palabra);
+	cantidad = remplazarLetras(palabra,'a','f');
+	printf("\nLa palabra es: %s y se cambiaron %d letras", palabra, cantidad);
+}
+
+void ejercicioQuinceDosAnexo()
+{
+	printf("\nEjercicio 15-2 ANEXO\nRealizar una función que reciba como parámetros un array de enteros."
+			"\nLa función calculará el valor máximo de ese array y utilizará"
+			"\nel valor por referencia para retornar ese valor.\n\n");
+	int vectorUno[5]={5,12,3,7,9};
+	int valor;
+	valor = 0;
+	numMaximoEnArray(vectorUno, &valor, 5);
+
+	mostrarVector(vectorUno, 5);
+	printf("\nEl mayor numero del array es %d", valor);
+}
+

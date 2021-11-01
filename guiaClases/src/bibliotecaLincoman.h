@@ -80,13 +80,20 @@ int buscarIndexId(eProductos lista[], int tam, int id);
 
 //Carga y descarga de datos Estructuras
 eProductos altaProducto(int newId);
+eProductos altaProductoConListas(eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int newId);
+
 int bajaProducto(eProductos lista[], int id, int tam);
 int borrarProducto(eProductos lista[], int tam, int ultimoId);
 void cargarProducto(eProductos lista[], int newId, int tam);
+void cargarProductoConListados(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int newIde);
 void altaJugador(eJugador lista[], int tam);
 
 //Manipulacion de datos Estructuras
 int modificarProducto(eProductos lista[], int ultimoId, int tam);
+void mostrarTipos(eTipoProduco tipos[], int tam);
+void mostrarUnTipo(eTipoProduco tipos);
+void mostrarNacionalidades(eNacionalidad nac[], int tam);
+void mostrarUnaNacionalidad(eNacionalidad nac);
 void mostrarProductos(eProductos lista[], int tam);
 void mostrarUnProducto(eProductos lista);
 void mostrarProductosCompleto(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo);
@@ -98,7 +105,7 @@ void sortEstructuraDesc(eProductos lista[], int tam, int criterio);
 void prodMasCaros(eProductos lista[], int tam);
 void tipoMasCaros(eProductos lista[], int tam, int criterio);
 int tiposConMasProd(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo);
-int nacionalidadSoloIphone(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int criterioTipo);
+int nacionalidadSoloUnTipo(eProductos lista[], eNacionalidad nac[], eTipoProduco tipoProd[], int tam, int tamNac, int tamTipo, int criterioTipo);
 void masBaratoTipo(eProductos lista[], int tam, int criterio);
 void masMontoTipo(eProductos lista[], int tam, int precio, int criterio);
 void mostrarProdNac(eProductos lista[], int tam, int criterio);
@@ -139,7 +146,7 @@ void sortArrayCriterio(int lista[], int tam, int criterio);
 int mostrarClientes(int id[], char civil[][10], int edad[], int temperatura[], char genero[][10], int tam);
 void mostrarUnClientes(int id, char civil[], int edad, int temperatura, char genero[]);
 void mostrarVector(int array[], int tam);
-
+void swapArray(int *numUno, int *numDos);
 /************************************************************************/
 
 //Operaciones matematicas
@@ -166,4 +173,12 @@ void Sumar4(void);
 void mostrarJugadores(eJugador lista[], int tam);
 void mostrarUnJugador(eJugador lista);
 eJugador cargarJugador();
+
+//Funciones con punteros
+int cargarNumero(int *num);
+int numeroMasGrande(int *numUno, int *numDos);
+int vectorContenido(int *vectorUno, int *vectorDos, int tam);
+int remplazarLetras(char *palabra, char letra, char letraDos);
+void numMaximoEnArray(int *arrayNumero, int *mayorValor, int tam);
+
 #endif /* BIBLIOTECALINCOMAN_H_ */

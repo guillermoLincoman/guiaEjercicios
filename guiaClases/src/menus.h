@@ -22,4 +22,5 @@ void clase9();
 void clase10();
 void clase11();
 void clase12();
+void clase15();
 #endif /* MENUS_H_ */

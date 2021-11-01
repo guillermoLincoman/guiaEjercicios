@@ -51,7 +51,14 @@ void ejercicioDiezUno();
 void ejercicioDiezDos();
 //Clase 11
 void ejercicioOnceUno();
-//Clase 12
-void ejercicioOnceUno();
-
+//Clase 15
+void ejercicioQuinceUno();
+void ejercicioQuinceDos();
+void ejercicioQuinceTres();
+void ejercicioQuinceCuatro();
+void ejercicioQuinceCinco();
+void ejercicioQuinceSeis();
+void anexoQuince();
+void ejercicioQuinceUnoAnexo();
+void ejercicioQuinceDosAnexo();
 #endif /* EJERCICIOS_H_ */
