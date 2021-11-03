@@ -25,6 +25,9 @@ void menuClases()
     printf("*10. CLASE 10                 *\n");
     printf("*11. CLASE 11                 *\n");
     printf("*15. CLASE 15                 *\n");
+    printf("*16. CLASE 16                 *\n");
+    printf("*17. CLASE 17                 *\n");
+    printf("*18. CLASE 18                 *\n");
     printf("* 0. SALIR                    *\n");
     printf("*******************************\n");
 }
@@ -34,16 +37,16 @@ void clase1()
 	int ejercicio;
 
     do{
-    	printf("\n*******************************\n");
-    	printf("* GUIA DE EJERCICIOS - CLASE 1 *\n");
-    	printf("*******************************\n");
-    	printf("* Seleccione Ejercicio        *\n");
-    	printf("*                             *\n");
-        printf("* 1. Ejercicio 1-1:           *\n");
-        printf("* 2. Ejercicio 1-2:           *\n");
-        printf("* 3. Ejercicio 1-3:           *\n");
-        printf("* 0. SALIR                    *\n");
-        printf("*******************************\n");
+    	printf("\n******************************************\n");
+    	printf("* Entradas, procesos y salidas - CLASE 1 *\n");
+    	printf("******************************************\n");
+    	printf("* Seleccione Ejercicio                   *\n");
+    	printf("*                                        *\n");
+        printf("* 1. Ejercicio 1-1:                      *\n");
+        printf("* 2. Ejercicio 1-2:                      *\n");
+        printf("* 3. Ejercicio 1-3:                      *\n");
+        printf("* 0. SALIR                               *\n");
+        printf("******************************************\n");
         ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 3, 4);
 		switch(ejercicio)
 		{
@@ -68,17 +71,18 @@ void clase2()
 	int ejercicio;
 
     do{
-    	printf("\n*******************************\n");
-    	printf("* GUIA DE EJERCICIOS - CLASE 2 *\n");
-    	printf("*******************************\n");
-    	printf("* Seleccione Ejercicio        *\n");
-    	printf("*                             *\n");
-    	printf("* 1. Ejercicio 2-1:           *\n");
-    	printf("* 2. Ejercicio 2-2:           *\n");
-    	printf("* 3. Ejercicio 2-3:           *\n");
-    	printf("* 4. Ejercicio 2-4:           *\n");
-    	printf("* 0. SALIR                    *\n");
-    	printf("*******************************\n");
+    	printf("\n***********************************\n");
+    	printf("* Estructuras repetitivas-máximos *\n");
+    	printf("*  mínimos, contadores - CLASE 2  *\n");
+    	printf("***********************************\n");
+    	printf("* Seleccione Ejercicio            *\n");
+    	printf("*                                 *\n");
+    	printf("* 1. Ejercicio 2-1:               *\n");
+    	printf("* 2. Ejercicio 2-2:               *\n");
+    	printf("* 3. Ejercicio 2-3:               *\n");
+    	printf("* 4. Ejercicio 2-4:               *\n");
+    	printf("* 0. SALIR                        *\n");
+    	printf("***********************************\n");
     	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 4, 4);
 		switch(ejercicio)
 		{
@@ -108,7 +112,7 @@ void clase3()
 
     do{
     	printf("\n*******************************\n");
-    	printf("* GUIA DE EJERCICIOS - CLASE 3 *\n");
+    	printf("* Funciones - CLASE 3         *\n");
     	printf("*******************************\n");
     	printf("* Seleccione Ejercicio        *\n");
     	printf("*                             *\n");
@@ -152,7 +156,7 @@ void clase4()
 
     do{
     	printf("\n*******************************\n");
-    	printf("* GUIA DE EJERCICIOS - CLASE 4 *\n");
+    	printf("* Recursividad - CLASE 4      *\n");
     	printf("*******************************\n");
     	printf("* Seleccione Ejercicio        *\n");
     	printf("*                             *\n");
@@ -204,16 +208,16 @@ void clase5()
 	int ejercicio;
 
     do{
-    	printf("\n*******************************\n");
-    	printf("* GUIA DE EJERCICIOS - CLASE 5*\n");
-    	printf("*******************************\n");
-    	printf("* Seleccione Ejercicio        *\n");
-    	printf("*                             *\n");
-    	printf("* 1. Ejercicio 5-1:           *\n");
-    	printf("* 2. Ejercicio 5-2:           *\n");
-    	printf("* 3. Anexo     5-3:           *\n");
-    	printf("* 0. SALIR                    *\n");
-    	printf("*******************************\n");
+    	printf("\n*********************************\n");
+    	printf("* Vectores y funciones - CLASE 5*\n");
+    	printf("*********************************\n");
+    	printf("* Seleccione Ejercicio          *\n");
+    	printf("*                               *\n");
+    	printf("* 1. Ejercicio 5-1:             *\n");
+    	printf("* 2. Ejercicio 5-2:             *\n");
+    	printf("* 3. Anexo     5-3:             *\n");
+    	printf("* 0. SALIR                      *\n");
+    	printf("*********************************\n");
     	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 3, 4);
 		switch(ejercicio)
 		{
@@ -238,16 +242,16 @@ void clase6()
 	int ejercicio;
 
     do{
-    	printf("\n*******************************\n");
-    	printf("* GUIA DE EJERCICIOS - CLASE 6*\n");
-    	printf("*******************************\n");
-    	printf("* Seleccione Ejercicio        *\n");
-    	printf("*                             *\n");
-    	printf("* 1. Ejercicio 6-1:           *\n");
-    	printf("* 2. Ejercicio 6-2:           *\n");
-    	printf("* 3. Ejercicio 6-3:           *\n");
-    	printf("* 0. SALIR                    *\n");
-    	printf("*******************************\n");
+    	printf("\n***********************************\n");
+    	printf("* Ordenamiento y cadenas - CLASE 6*\n");
+    	printf("***********************************\n");
+    	printf("* Seleccione Ejercicio            *\n");
+    	printf("*                                 *\n");
+    	printf("* 1. Ejercicio 6-1:               *\n");
+    	printf("* 2. Ejercicio 6-2:               *\n");
+    	printf("* 3. Ejercicio 6-3:               *\n");
+    	printf("* 0. SALIR                        *\n");
+    	printf("***********************************\n");
     	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 3, 4);
 		switch(ejercicio)
 		{
@@ -272,7 +276,7 @@ void clase7()
 	int ejercicio;
     do{
     	printf("\n*******************************\n");
-    	printf("* GUIA DE EJERCICIOS - CLASE 7*\n");
+    	printf("* ARRAYS PARALELOS  - CLASE 7 *\n");
     	printf("*******************************\n");
     	printf("* Seleccione Ejercicio        *\n");
     	printf("*                             *\n");
@@ -404,7 +408,7 @@ void clase15()
 	int ejercicio;
     do{
     	printf("\n*******************************\n");
-    	printf("* GUIA DE EJERCICIOS - CLASE 15*\n");
+    	printf("* Punteros - CLASE 15         *\n");
     	printf("*******************************\n");
     	printf("* Seleccione Ejercicio        *\n");
     	printf("*                             *\n");
@@ -446,6 +450,81 @@ void clase15()
 				break;
 			case 7:
 				anexoQuince();
+				limpiar();
+				break;
+		}
+    }while(ejercicio != 0);
+}
+void clase17()
+{
+	int ejercicio;
+    do{
+    	printf("\n*******************************\n");
+    	printf("* Memoria Dinamica - CLASE 17*\n");
+    	printf("*******************************\n");
+    	printf("* Seleccione Ejercicio        *\n");
+    	printf("*                             *\n");
+    	printf("* 1. Ejercicio 17-1:          *\n");
+    	printf("* 2. Ejercicio 17-2:          *\n");
+    	printf("* 3. Ejercicio 17-3:          *\n");
+    	printf("* 0. SALIR                    *\n");
+    	printf("*******************************\n");
+    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 3, 4);
+		switch(ejercicio)
+		{
+			case 1:
+				ejercicioDiecisieteUno();
+				limpiar();
+				break;
+			case 2:
+				ejercicioDiecisieteDos();
+				limpiar();
+				break;
+			case 3:
+				ejercicioDiecisieteTres();
+				limpiar();
+				break;
+		}
+    }while(ejercicio != 0);
+}
+
+void clase18()
+{
+	int ejercicio;
+    do{
+    	printf("\n*************************\n");
+    	printf("* Archivos - CLASE 18   *\n");
+    	printf("*******************************\n");
+    	printf("* Seleccione Ejercicio  *\n");
+    	printf("*                       *\n");
+    	printf("* 1. Ejercicio 18-1:    *\n");
+    	printf("* 2. Ejercicio 18-2:    *\n");
+    	printf("* 3. Ejercicio 18-3:    *\n");
+    	printf("* 4. Ejercicio 18-4:    *\n");
+    	printf("* 5. Ejercicio 18-5:    *\n");
+    	printf("* 0. SALIR              *\n");
+    	printf("*************************\n");
+    	ejercicio = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 5, 4);
+		switch(ejercicio)
+		{
+			case 1:
+				ejercicioDieciochoUno();
+				limpiar();
+				break;
+			case 2:
+				//ejercicioDieciochoDos();
+				limpiar();
+				break;
+			case 3:
+				ejercicioDieciochoTres();
+				limpiar();
+				break;
+			case 4:
+				//ejercicioDieciochoCuatro();
+				limpiar();
+				break;
+			case 5:
+				//ejercicioDieciochoCinco();
 				limpiar();
 				break;
 		}

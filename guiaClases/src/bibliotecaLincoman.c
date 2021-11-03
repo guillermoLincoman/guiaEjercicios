@@ -2155,4 +2155,82 @@ void numMaximoEnArray(int *arrayNumero, int *mayorValor, int tam)
 	}
 }
 
+eAlumnito* cargarAlumno()//constructor
+{
+	eAlumnito* pAlumno;
+	pAlumno = (eAlumnito*) malloc(sizeof(eAlumnito));
+
+	if(pAlumno != NULL)
+	{
+		pAlumno->legajo=500;
+		strcpy(pAlumno->nombre, "Robertito");
+		pAlumno->edad =32;
+	}
+	return pAlumno;
+}
+
+int restructurador(int *arrayNumero, int tam, int remove)
+{
+	int error;
+	int i;
+	int j;
+	int contador;
+	error = 1;
+	contador = 0;
+	if(arrayNumero != NULL && tam > 0)
+	{
+		//1. Recorro el array
+		for (i = 0; i < tam; ++i) {
+			//2. Busco el numero al cual quiero sacar
+			if(*(arrayNumero+i)==remove)
+			{
+				//3. Restructuro el array hasta dejar en la ultima posicion al dato basura
+				for (j = 0; j < (tam-contador); ++j) {
+					//4. Piso el dato basura con el siguiente numero hasta llegar al final
+					*(arrayNumero+i) = *(arrayNumero+(i+1));
+					i++;
+					error = 0;
+				}
+				//5. Una vez restructurado  borro un entero del array
+				arrayNumero = (int*) realloc(arrayNumero, sizeof(int)*(tam-1));
+				break;
+			}
+			//Por cada posicion que recorra sumo uno para descontar
+			//en la restructuracion del array
+			contador++;
+		}
+	}
+	return error;
+}
+
+int push(int *arrayNumero, int tam, int valor, int indice)
+{
+	int i;
+	int *arrayAux;
+	int error;
+	error = 1;
+	if(arrayNumero != NULL)
+	{
+		//1. Le sumo un int mas al array utilizando el auxiliar
+		//para asegurar que hay espacio en memoria
+		arrayAux= (int*) realloc(arrayNumero, sizeof (int) * (tam + 1));
+		if(arrayAux != NULL)
+		{
+			//2. Una vez verificado que hay espacio en memoria apunto mi array al auxiliar
+			arrayNumero = arrayAux;
+			//3. Libero el espacio utilizado por el array Auxiliar
+			free(arrayAux);
+			//4. En el nuevo entero agregado copio el ultimo numero del array
+			//asi consecutivamente hasta dejar el indice solicitado con dato basura
+            for(i=tam+1;i>indice;i--)
+            {
+               (*(arrayNumero+i))=(*(arrayNumero+i-1));
+            }
+			//5.Copio el valor solicitado en el indice solicitado
+			*(arrayNumero+indice) = valor;
+			error = 0;
+		}
+	}
+	return error;
+}
 

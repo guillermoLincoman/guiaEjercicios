@@ -1167,3 +1167,146 @@ void ejercicioQuinceDosAnexo()
 	printf("\nEl mayor numero del array es %d", valor);
 }
 
+void ejercicioDiecisieteUno()
+{
+	printf("\nEjercicio 17-1:\nRealizar una función que retorne un puntero a eProducto. Dentro de esta función deberá crear un "
+			"\nproducto hardcodeado, un puntero y se apuntará ese puntero al producto. Mostrar el producto"
+			"\ncargado 5 veces desde el main. Observar el comportamiento del programa.\n\n");
+	int i;
+	eAlumnito* alumnito;
+	alumnito = cargarAlumno();
+	for (i = 0; i < 5; ++i) {
+		printf("\nEl alumnito es: \nLegajo: %d\nNombre: %s\nEdad:%d\n", alumnito->legajo, alumnito->nombre, alumnito->edad);
+	}
+
+}
+
+void ejercicioDiecisieteDos()
+{
+	printf("\nEjercicio 17-2:\nRealizar una función que reciba como parámetro un array de enteros, su tamaño y un entero."
+			"\nLa función se encargará de buscar el valor entero y borrará la primera ocurrencia del mismo"
+			"\nEl array deberá reestructurarse dinámicamente. \n\n");
+	int i;
+	int error;
+	int borrar;
+	int* pArray;
+	pArray = (int*) malloc(sizeof(int)*5);
+
+	if(pArray != NULL)
+	{
+		for (i = 0; i < 5; ++i) {
+			*(pArray+i) = cargarUnEntero("Ingresar un numero: ", "Ingrese un numero valido: ", 0, 100000, 4);
+		}
+		mostrarVector(pArray, 5);
+		borrar = cargarUnEntero("\nQue numero desea borrar?: ", "Ingrese un numero valido: ", 0, 100000, 4);
+		error = restructurador(pArray, 5, borrar);
+		if (error == 0){
+			mostrarVector(pArray, 5-1);
+		}else{
+			printf ("\nNo se encontro el numero\n");
+		}
+	}
+}
+
+void ejercicioDiecisieteTres()
+{
+	printf("\nEjercicio 17-3: (Push)\nRealizar una función que reciba como parámetro un array de enteros, "
+			"\nsu tamaño, un valor entero y un índice. La función se encargará de insertar el valor entero "
+			"\nen el índice especificado. El array deberá reestructurarse dinámicamente.\n\n");
+	int i;
+	int error;
+	int indice;
+	int valor;
+	int tam;
+	tam = 5;
+	int* pArray;
+	pArray = (int*) malloc(sizeof(int)*tam);
+
+	if(pArray != NULL)
+	{
+		for (i = 0; i < tam; ++i) {
+			*(pArray+i) = cargarUnEntero("Ingresar un numero: ", "Ingrese un numero valido: ", 0, 9, 4);
+		}
+
+		mostrarVector(pArray, tam);
+		printf("|Valores\n----------*\n0 1 2 3 4 |Indice\n");
+
+		valor = cargarUnEntero("\nQue numero desea cargar?: ", "Ingrese un numero valido: ", 0, 9, 4);
+		indice = cargarUnEntero("\nEn que indice?: ", "Ingrese un indice valido: ", 0, 4, 4);
+
+		error = push(pArray, tam, valor, indice);
+
+		if (error == 0){
+			mostrarVector(pArray, tam+1);
+			printf("|Valores\n------------*\n0 1 2 3 4 5 |Indice");
+		}else{
+			printf ("\nNo hay espacio en memoria para ingresar otro numero.....\n");
+		}
+	}
+}
+
+
+void ejercicioDieciochoUno()
+{
+	printf("\nEjercicio 18-1:\nGuardar en una variable nombre y apellido. Guardar el dato "
+			"\nen un archivo de texto, leerlo y luego mostrarlo.\n\n");
+	FILE* pArchivo;
+	char nombre[30]="Guillermos";
+	char apellido[30]="Lincomans";
+	char lectura[60];
+	//1. Abro el archivo, lo busco/creo y pongo modo escribir
+	pArchivo = fopen("archivo_texto.txt","w");
+	if(pArchivo != NULL)
+	{
+		//2.Escribo el archivo
+		fprintf(pArchivo, "%s\n",nombre);
+		fprintf(pArchivo, "%s",apellido);
+
+		//3.Cierro el archivo
+		fclose(pArchivo);
+	}else{
+		printf("\nNo se encontro el directorio...");
+	}
+	//4. Abro el archivo en modo lectura
+	pArchivo = fopen("archivo_texto.txt","r");
+
+	while(!feof(pArchivo))
+	{
+		//5. Cargo los datos del archivo en la cadena
+		fgets(lectura, 30, pArchivo);
+		//6. Muestro la cadena
+		puts(lectura);
+	}
+	//7.Cierro el archivo
+	fclose(pArchivo);
+
+
+
+}
+void ejercicioDieciochoTres()
+{
+	printf("\nEjercicio 18-3:\nGuardar el dato Escribir y leer un archivo binario con 5 números enteros."
+				"\n Mostrar los datos luego de la lectura del archivo\n\n");
+	FILE* pArchivo;
+
+	int numero[5]={3,6,3,2,4};
+	int lectura[5];
+
+	pArchivo = fopen("numero.dat","wb");
+	fwrite(&numero, sizeof(int), 5,pArchivo);
+	fclose(pArchivo);
+
+
+	pArchivo = fopen("numero.dat","rb");
+	if(pArchivo != NULL)
+	{
+		fread(&lectura, sizeof(int),5,pArchivo);
+		for (int i = 0;  i < 5; ++ i) {
+			printf("-%d-", lectura[i]);
+		}
+	}else{
+		printf("\nNo se encontro el archivo...");
+	}
+	fclose(pArchivo);
+
+}

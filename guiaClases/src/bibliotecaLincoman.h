@@ -51,6 +51,13 @@ typedef struct
 
 typedef struct
 {
+    int legajo;
+    char nombre[30];
+    int edad;
+}eAlumnito;
+
+typedef struct
+{
     int idNacionalidad ;
     char descripcionNacionalidad[30];
 }eNacionalidad;
@@ -180,5 +187,8 @@ int numeroMasGrande(int *numUno, int *numDos);
 int vectorContenido(int *vectorUno, int *vectorDos, int tam);
 int remplazarLetras(char *palabra, char letra, char letraDos);
 void numMaximoEnArray(int *arrayNumero, int *mayorValor, int tam);
+eAlumnito* cargarAlumno();
+int restructurador(int *arrayNumero, int tam, int remove);
+int push(int *arrayInt, int tam, int valor, int indice);
 
 #endif /* BIBLIOTECALINCOMAN_H_ */

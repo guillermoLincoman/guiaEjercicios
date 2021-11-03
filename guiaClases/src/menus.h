@@ -23,4 +23,6 @@ void clase10();
 void clase11();
 void clase12();
 void clase15();
+void clase17();
+void clase18();
 #endif /* MENUS_H_ */

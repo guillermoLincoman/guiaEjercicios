@@ -15,7 +15,7 @@ int main()
     int clase;
     do{
     	menuClases();
-    	clase = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 17, 4);
+    	clase = cargarUnEntero("\nIngrese una opcion: ", "\nIngrese una opcion dentro del rango: ", 0, 18, 4);
         switch(clase)
         {
             case 1:
@@ -84,6 +84,10 @@ int main()
             	break;
             case 17:
             	clase17();
+            	limpiar();
+            	break;
+            case 18:
+            	clase18();
             	limpiar();
             	break;
         }

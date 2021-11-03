@@ -61,4 +61,12 @@ void ejercicioQuinceSeis();
 void anexoQuince();
 void ejercicioQuinceUnoAnexo();
 void ejercicioQuinceDosAnexo();
+//Clase 17
+void ejercicioDiecisieteUno();
+void ejercicioDiecisieteDos();
+void ejercicioDiecisieteTres();
+//Clase 18
+void ejercicioDieciochoUno();
+void ejercicioDieciochoTres();
+
 #endif /* EJERCICIOS_H_ */
